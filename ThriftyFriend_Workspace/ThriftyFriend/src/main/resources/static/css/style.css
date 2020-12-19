@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.redText
+{
+	color: red;
+}
+
+.footer
+{
+	height: 100px;
+}
+
+#search
+{
+	margin-top: 35%; 
+	width: 80%; 
+	display:inline-block;
+}
+
+.mintButton
+{
+	background-color: #5ddac2;
+}
+
+.databaseListings
+{
+	margin-bottom: 30px;
+}
+.ebayListings
+{
+	margin-bottom: 50px;
+}
