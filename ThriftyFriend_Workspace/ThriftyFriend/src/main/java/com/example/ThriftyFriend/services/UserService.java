@@ -29,5 +29,10 @@ public class UserService
 		u.setPassword(hashed);
 		return this.uRepo.save(u);
 	}
+	
+	public boolean existsByEmail(String email)
+	{
+		return this.uRepo.existsByEmail(email);
+	}
 			
 }

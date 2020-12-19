@@ -83,10 +83,23 @@ public class MainController
 			redirect.addFlashAttribute("alreadyLoggedError", "You are already logged in as " + this.uService.findById((Long)session.getAttribute("user_id")).getName());
 			return "redirect:/loginReg";
 		}
+		
+		if(email == "" | password == "")
+		{
+			redirect.addFlashAttribute("loginBlankError", "Your login info cannot be blank.");
+			return "redirect:/loginReg";
+		}
+		
+		if(!this.uService.existsByEmail(email))
+		{
+			redirect.addFlashAttribute("userNotFoundError", "That user does not exist.");
+			return "redirect:/loginReg";
+		}
+		
 		User u = this.uService.findByEmail(email);
 		if(!BCrypt.checkpw(password, u.getPassword()))
 		{
-			redirect.addFlashAttribute("loginError", "Login information not correct or email not found.");
+			redirect.addFlashAttribute("loginError", "Login information not correct.");
 			return "redirect:/loginReg";
 		}
 		session.setAttribute("user_id", u.getId());

@@ -72,7 +72,7 @@
 				
 				<form action="/login" method="POST">
 					<div class="form-group">
-						<label for="email">Email:</label><span class="redText">${loginError} ${alreadyLoggedError}</span>
+						<label for="email">Email:</label><span class="redText">${loginError} ${alreadyLoggedError} ${loginBlankError} ${userNotFoundError}</span>
 						<input id="email" name="email" class="form-control"></textarea> 
 					</div>
 					<div class="form-group">
