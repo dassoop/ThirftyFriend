@@ -14,25 +14,34 @@
 			<link rel="stylesheet" href="/css/style.css">
 			<link rel="preconnect" href="https://fonts.gstatic.com">
 			<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-<!-- ^ COPY HERE AND UP ^	 -->
 			
-<title>ThriftyFriend - Search Listings</title>
+<title>ThriftyFriend - View Summary</title>
 </head>
 <body>
 <t:wrapper>
 
 <div class="container">
+
 	<div class="row">
 	
 		<div class="col shadow-lg rounded">
-			<h5>Watchlist</h5>
+			<h5>${summary.name}</h5>
 				<table class="table table-light"> 
-					<thead>
-						<th>Product Name</th>
-					</thead>
-				
 					<tbody>
-						<td></td>
+						<tr>
+							<th>Average Cost</th>
+							<td>${summary.averageCost}</td>
+						</tr>
+						
+						<tr>
+							<th>Minimum Cost</th>
+							<td>${summary.minCost}</td>
+						</tr>
+						
+						<tr>
+							<th>Maximum Cost</th>
+							<td>${summary.maxCost}</td>
+						</tr>
 					</tbody>
 				</table>
 		
@@ -46,6 +55,7 @@
 		</div>
 		
 	</div> 
+
 </div>
 
 </t:wrapper>

@@ -3,6 +3,8 @@ package com.example.ThriftyFriend.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.ThriftyFriend.models.ListingItem;
 import com.example.ThriftyFriend.models.ListingSummary;
+import com.example.ThriftyFriend.models.User;
 import com.example.ThriftyFriend.services.ListingSummaryService;
 import com.example.ThriftyFriend.services.UserService;
 
@@ -24,8 +27,9 @@ public class SearchController
 	@Autowired
 	private ListingSummaryService sumService;
 	
+//FAKE SEARCH REQUEST - Mapping to simulate data being returned from an Ebay JSON response and then calculated into Average, Min, and Max values
 	@PostMapping("/fakeSearchRequest")
-	public String fakeSearchRequest(@RequestParam("search")String search, Model m)
+	public String fakeSearchRequest(@RequestParam("search")String search, Model m, HttpSession session)
 	{
 		List<ListingItem> listingItems = new ArrayList<>();
 		
@@ -64,6 +68,9 @@ public class SearchController
 			System.out.println(listingSummaries.get(i).getName());
 		}
 		
+		User u = this.uService.findById((Long)session.getAttribute("user_id"));
+		m.addAttribute("user", u);
+		
 		m.addAttribute("averageCost", average);
 		m.addAttribute("minCost", min);
 		m.addAttribute("maxCost", max);
@@ -75,6 +82,7 @@ public class SearchController
 		return "viewListings.jsp";
 	}
 	
+//FAKE SEARCH GET MAPPING - The same functionality as the POST version, but intended to be used with <a> links as oppsed to forms, to refresh values when viewing the Summaries. 
 	@GetMapping("/viewListings/{name}")
 	public String viewListings(Model m, @PathVariable("name")String search)
 	{
