@@ -31,13 +31,18 @@ public class SearchController
 	@PostMapping("/fakeSearchRequest")
 	public String fakeSearchRequest(@RequestParam("search")String search, Model m, HttpSession session)
 	{
+		//Create list to add Ebay listing items info to.
 		List<ListingItem> listingItems = new ArrayList<>();
 		
+		//Create listing items and assign dummy data. These parameter assignments will be 
+		//replaced with the output of our Ebay API call as we loop through the JSON array. 
 		listingItems.add(new ListingItem("iphone", 300.50));
 		listingItems.add(new ListingItem("iphone", 270));
 		listingItems.add(new ListingItem("iphone", 400));
 		listingItems.add(new ListingItem("iphone", 150));
 		
+		
+		//Algorithm to pull min, max, and average out of the list. 
 		double total = 0;
 		double average = 0;
 
@@ -62,21 +67,23 @@ public class SearchController
 		average = total / listingItems.size();
 		
 		
+		//Search the Thrifty DataBase for a summary that already matches the name 
 		List<ListingSummary> listingSummaries = this.sumService.searchForSummary(search);
-		for(int i = 0; i < listingSummaries.size(); i++)
+		
+		
+		//Check if there is a User logged in to display their name
+		if(session.getAttribute("user_id") != null)
 		{
-			System.out.println(listingSummaries.get(i).getName());
+			User u = this.uService.findById((Long)session.getAttribute("user_id"));
+			m.addAttribute("user", u);
 		}
-		
-		User u = this.uService.findById((Long)session.getAttribute("user_id"));
-		m.addAttribute("user", u);
-		
+
+		//Pass on all data that will be displayed on the page 
 		m.addAttribute("averageCost", average);
 		m.addAttribute("minCost", min);
 		m.addAttribute("maxCost", max);
 		
 		m.addAttribute("searchedText", search);
-
 		m.addAttribute("listingItems", listingItems);
 		m.addAttribute("listingSummaries", listingSummaries);
 		return "viewListings.jsp";
@@ -84,7 +91,7 @@ public class SearchController
 	
 //FAKE SEARCH GET MAPPING - The same functionality as the POST version, but intended to be used with <a> links as oppsed to forms, to refresh values when viewing the Summaries. 
 	@GetMapping("/viewListings/{name}")
-	public String viewListings(Model m, @PathVariable("name")String search)
+	public String viewListings(Model m, @PathVariable("name")String search, HttpSession session)
 	{
 		List<ListingItem> listingItems = new ArrayList<>();
 		
@@ -123,6 +130,13 @@ public class SearchController
 			System.out.println(listingSummaries.get(i).getName());
 		}
 		
+		//Check if there is a User logged in to display their name
+		if(session.getAttribute("user_id") != null)
+		{
+			User u = this.uService.findById((Long)session.getAttribute("user_id"));
+			m.addAttribute("user", u);
+		}
+
 		m.addAttribute("averageCost", average);
 		m.addAttribute("minCost", min);
 		m.addAttribute("maxCost", max);
@@ -133,12 +147,4 @@ public class SearchController
 		m.addAttribute("listingSummaries", listingSummaries);
 		return "viewListings.jsp";
 	}
-	
-//	@PostMapping("/searchRequest")
-//	public String searchRequest(@RequestParam("searchText")String searchText)
-//	{
-//		JSONObject response = this.searchService.requestSearch(searchText);
-//		System.out.println(response);
-//		return "searchResult.jsp";
-//	}
 }

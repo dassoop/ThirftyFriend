@@ -141,11 +141,18 @@ public class MainController
 //**TO DO** add in update for summary information and log the dates for future data display. 
 	@GetMapping("/summary/{id}/view")
 	public String viewSummary(@PathVariable("id")Long id, Model m, HttpSession session)
-	{
+	{	
+		//Check if there is a User logged in to display their name
+		if(session.getAttribute("user_id") != null)
+		{
+			User u = this.uService.findById((Long)session.getAttribute("user_id"));
+			m.addAttribute("user", u);
+		}
+		
+		
 		ListingSummary sum = this.sumService.findById(id);
 		
-		User u = this.uService.findById((Long)session.getAttribute("user_id"));
-		m.addAttribute("user", u);
+		this.sumService.summaryUpdateAndRefresh(sum);
 		
 		m.addAttribute("summary", sum);
 		return "viewSummary.jsp";
