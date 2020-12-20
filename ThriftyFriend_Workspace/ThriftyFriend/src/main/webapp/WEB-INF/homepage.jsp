@@ -25,7 +25,7 @@
 <div class="container">
 
 	<div class="row">
-		<div class="col-md-8 offset-md-2">
+		<div class="col-md-8 offset-md-2" align="center">
 				<form action="/fakeSearchRequest" method="POST">
 					<div class="form-group">
 						<label for="search"></label>
