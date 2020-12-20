@@ -42,9 +42,31 @@
 							<th>Maximum Cost</th>
 							<td>${summary.maxCost}</td>
 						</tr>
+						
+						<tr>
+							<th>Updated At</th>
+							<td><fmt:formatDate value="${summary.updatedAt}" type="both"/></td>
+						</tr>
 					</tbody>
 				</table>
-		
+				
+				<div class="historyLogDisplay">
+					<table class="table table-light"> 
+						<thead>
+							<th>Date</th>
+							<th>Amount</th>
+						</thead>
+					
+						<tbody>
+							<c:forEach items="${summary.historyLogs}" var="log">
+								<tr>
+									<td><fmt:formatDate value="${log.createdAt}" type="both"/></td>
+									<td>${log.averageCost}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 		
 		</div>
 		

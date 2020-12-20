@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -24,6 +27,10 @@ public class SummaryHistoryLog
 	
 	@Column(updatable=false)
 	private Date createdAt;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="summary_id")
+	private ListingSummary summary;
 	
 	@PrePersist
 	protected void createdAt()
@@ -79,5 +86,13 @@ public class SummaryHistoryLog
 	}
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public ListingSummary getSummary() {
+		return summary;
+	}
+
+	public void setSummary(ListingSummary summary) {
+		this.summary = summary;
 	}
 }

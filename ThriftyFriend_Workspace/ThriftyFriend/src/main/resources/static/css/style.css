@@ -30,3 +30,8 @@
 {
 	margin-bottom: 50px;
 }
+.historyLogDisplay
+{
+	height: 250px;
+	overflow-y: scroll;
+}
