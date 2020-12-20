@@ -5,13 +5,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="listingSummaries")
@@ -29,6 +30,9 @@ public class ListingSummary
 	private Date createdAt;
 	private Date updatedAt;
 	
+	@OneToMany(mappedBy="summary", fetch = FetchType.LAZY)
+	private List<SummaryHistoryLog> historyLogs;
+	
 	@PrePersist
 	protected void createdAt()
 	{
@@ -42,7 +46,7 @@ public class ListingSummary
 	
 	public ListingSummary()
 	{
-
+		
 	}
 	
 	public ListingSummary(String name, double averageCost, double minCost, double maxCost)
@@ -94,5 +98,11 @@ public class ListingSummary
 	}
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	public List<SummaryHistoryLog> getHistoryLogs() {
+		return historyLogs;
+	}
+	public void setHistoryLogs(List<SummaryHistoryLog> historyLogs) {
+		this.historyLogs = historyLogs;
 	}
 }
