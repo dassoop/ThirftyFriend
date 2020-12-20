@@ -88,7 +88,7 @@
 						<tbody>
 							<c:forEach items="${listingSummaries}" var="summary">
 								<tr>
-									<td>${summary.name}</td>
+									<td><a href="/summary/${summary.id}/view">${summary.name}</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

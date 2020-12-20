@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.ThriftyFriend.models.ListingSummary;
 import com.example.ThriftyFriend.models.User;
 import com.example.ThriftyFriend.services.ListingSummaryService;
 import com.example.ThriftyFriend.services.UserService;
@@ -30,6 +31,7 @@ public class MainController
 	@Autowired
 	private ListingSummaryService sumService;
 	
+//HOMEPAGE - View main search home page
 	@GetMapping("/")
 	public String viewHomepage(HttpSession session, Model m)
 	{
@@ -40,6 +42,7 @@ public class MainController
 		return "homepage.jsp";
 	}
 	
+//VIEW LOGIN/RED - View login and registration page
 	@GetMapping("/loginReg")
 	public String viewLoginReg(@ModelAttribute("user")User u, Model m, HttpSession session)
 	{
@@ -50,6 +53,7 @@ public class MainController
 		return "loginReg.jsp";
 	}
 	
+//REGISTER USER POST - Mapping to post register User form 	
 	@PostMapping("/register")
 	public String registerUser(@Valid @ModelAttribute("user")User u, BindingResult result, Model m, HttpSession session)
 	{
@@ -63,6 +67,7 @@ public class MainController
 		return "redirect:/dashboard";
 	}
 	
+//VIEW DASHBOARD - View user Dashboard page 
 	@GetMapping("/dashboard")
 	public String viewSearchListings(HttpSession session, RedirectAttributes redirect, Model m)
 	{
@@ -74,28 +79,30 @@ public class MainController
 		m.addAttribute("user", this.uService.findById((Long)session.getAttribute("user_id")));
 		return "dashboard.jsp";
 	}
-	
+
+//LOGIN USER POST - Mapping to post login User form 
 	@PostMapping("/login")
 	public String login(@RequestParam("email")String email, @RequestParam("password")String password, HttpSession session, RedirectAttributes redirect)
 	{
+		//Check if user is already logged in 
 		if(session.getAttribute("user_id")!=null)
 		{
 			redirect.addFlashAttribute("alreadyLoggedError", "You are already logged in as " + this.uService.findById((Long)session.getAttribute("user_id")).getName());
 			return "redirect:/loginReg";
 		}
-		
+		//Check if either login form fields are blank
 		if(email == "" | password == "")
 		{
 			redirect.addFlashAttribute("loginBlankError", "Your login info cannot be blank.");
 			return "redirect:/loginReg";
 		}
-		
+		//Check if the user email is registered in databbase
 		if(!this.uService.existsByEmail(email))
 		{
 			redirect.addFlashAttribute("userNotFoundError", "That user does not exist.");
 			return "redirect:/loginReg";
 		}
-		
+		//Find user and check password hash
 		User u = this.uService.findByEmail(email);
 		if(!BCrypt.checkpw(password, u.getPassword()))
 		{
@@ -106,6 +113,7 @@ public class MainController
 		return "redirect:/dashboard";
 	}
 	
+//LOGOUT GET MAPPING - Post to log out user by invalidiating the httpsession
 	@GetMapping("/logout")
 	public String logout(HttpSession session)
 	{
@@ -113,8 +121,9 @@ public class MainController
 		return "redirect:/loginReg";
 	}
 	
+//CREATE SUMMARY - Path to create summary with information pulled from "ListingItem" objects math displayed on the page. 
 	@GetMapping("/summary/create/{name}/{avg}/{min}/{max}")
-	public String createSummary(@PathVariable("name")String name, @PathVariable("avg")double avg, @PathVariable("avg")double min, @PathVariable("avg")double max, RedirectAttributes redirect)
+	public String createSummary(@PathVariable("name")String name, @PathVariable("avg")double avg, @PathVariable("min")double min, @PathVariable("max")double max, RedirectAttributes redirect)
 	{
 		if(this.sumService.existsByName(name))
 		{
@@ -126,5 +135,19 @@ public class MainController
 			this.sumService.createListingSummary(name, avg, min, max);
 			return "redirect:/viewListings/{name}";
 		}
+	}
+	
+//VIEW SUMMARY - Path to view a specific ListingSummary by ID 
+//**TO DO** add in update for summary information and log the dates for future data display. 
+	@GetMapping("/summary/{id}/view")
+	public String viewSummary(@PathVariable("id")Long id, Model m, HttpSession session)
+	{
+		ListingSummary sum = this.sumService.findById(id);
+		
+		User u = this.uService.findById((Long)session.getAttribute("user_id"));
+		m.addAttribute("user", u);
+		
+		m.addAttribute("summary", sum);
+		return "viewSummary.jsp";
 	}
 }

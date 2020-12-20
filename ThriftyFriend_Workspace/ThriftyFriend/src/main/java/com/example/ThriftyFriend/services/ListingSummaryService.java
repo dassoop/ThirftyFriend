@@ -14,6 +14,11 @@ public class ListingSummaryService
 	@Autowired
 	private ListingSummaryRepository sumRepo;
 	
+	public ListingSummary findById(Long id)
+	{
+		return this.sumRepo.findById(id).orElse(null);
+	}
+	
 	public ListingSummary createListingSummary(String name, double averageCost, double minCost, double maxCost)
 	{
 		ListingSummary sum = new ListingSummary();
