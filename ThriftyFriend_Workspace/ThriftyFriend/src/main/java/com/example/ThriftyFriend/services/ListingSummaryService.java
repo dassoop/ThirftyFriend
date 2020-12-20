@@ -91,11 +91,6 @@ public class ListingSummaryService
 		sum.getHistoryLogs().add(log);
 		log.setSummary(sum);
 		
-		for(int i = 0; i < sum.getHistoryLogs().size(); i++)
-		{
-			System.out.println(sum.getHistoryLogs().get(i).getId());
-		}
-		
 		sum.setAverageCost(average);
 		sum.setMinCost(min);
 		sum.setMaxCost(max);
