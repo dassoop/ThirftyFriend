@@ -20,6 +20,28 @@
 	
 		<div class="col" style="margin-top:20%;">
 			<h4>Search Result</h4>
+			
+			<table class="table table-striped table-dark">
+				<thead>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Market Price</th>
+					<th>Img URL</th>
+				</thead>
+				
+				<tbody>
+				
+				<c:forEach items="${searchResults}" var="result">
+					<tr>
+						<td>${result.title}</td>
+						<td>${result.price}</td>
+						<td>${result.marketPrice}</td>
+						<td><img src="${result.imageUrl}" alt="product image"></td>
+					</tr>
+				</c:forEach>
+				
+				</tbody>
+			</table>
 		
 		</div>
 	

@@ -1,0 +1,20 @@
+-Typical Main Push - 
+
+git add . 
+git commit -m “commit message”
+git push -u origin main 
+
+- Branched Push - 
+
+git checkout -b name-of-branch
+git add . 
+git commit -m “commit message” 
+git push origin name-of-branch
+
+-Pull From Master-
+
+git pull origin main
+
+-Check Current Branch and Changes 
+
+git status 
