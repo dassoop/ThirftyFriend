@@ -40,11 +40,16 @@ public class MainController
 		for(int i = 0; i < jArray.length(); i++)
 		{
 			JSONObject obj = jArray.getJSONObject(i);
+			String marketPrice = "";
 			
-//			String marketPrice = obj.getJSONObject("marketingPrice").getJSONObject("originalPrice").getString("value");
+			if(obj.has("marketingPrice"))
+			{
+				marketPrice = obj.getJSONObject("marketingPrice").getJSONObject("originalPrice").getString("value");
+				System.out.println("marketPrice");
+			}
+			
 			String title = obj.getString("title");
 			String price = obj.getJSONObject("price").getString("value");
-			String marketPrice = obj.getJSONObject("seller").getString("username");
 			String imageURL = obj.getJSONObject("image").getString("imageUrl");
 	
 			SearchResult result = new SearchResult(title, price, marketPrice, imageURL);	
