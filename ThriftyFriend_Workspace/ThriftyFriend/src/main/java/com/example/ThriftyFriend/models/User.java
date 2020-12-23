@@ -42,7 +42,7 @@ public class User
 	@JoinTable(name="watchlist",
 			joinColumns = @JoinColumn(name="user_id"),
 			inverseJoinColumns = @JoinColumn(name="summary_id"))
-	private List<ListingSummary> watchlist;
+	private List<ListingSummary> list_watchlist;
 	
 	@PrePersist
 	protected void createdAt()

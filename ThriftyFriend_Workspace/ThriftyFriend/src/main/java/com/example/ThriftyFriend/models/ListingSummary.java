@@ -41,7 +41,7 @@ public class ListingSummary
 	@JoinTable(name="watchlist",
 				joinColumns = @JoinColumn(name="summary_id"),
 				inverseJoinColumns = @JoinColumn(name="user_id"))
-	private List<ListingSummary> watchlist;
+	private List<User> user_watchlist;
 	
 	@PrePersist
 	protected void createdAt()
