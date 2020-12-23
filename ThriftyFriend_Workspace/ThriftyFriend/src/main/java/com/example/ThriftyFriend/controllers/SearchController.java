@@ -51,7 +51,6 @@ public class SearchController
 			}
 		}
 		
-		System.out.println(name);
 		//Get response data from Ebay API call in service	
 		JSONObject response = this.searchService.requestSearch(name);
 		List<ListingItem> listingItems = this.searchService.parseSearchJSON(response);	
