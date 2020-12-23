@@ -51,52 +51,5 @@ public class ListingSummaryService
 		return this.sumRepo.save(sum);
 	}
 	
-	public ListingSummary summaryUpdateAndRefresh(ListingSummary sum)
-	{
-		//TESTING LOGIC IN PLACE OF SEARCH RESULTS
-		List<ListingItem> listingItems = new ArrayList<>();
-		
-		listingItems.add(new ListingItem("iphone", 300.50));
-		listingItems.add(new ListingItem("iphone", 270));
-		listingItems.add(new ListingItem("iphone", 520));
-		listingItems.add(new ListingItem("iphone", 100));
-		
-		//Algo to determine min, max, and avg
-		double total = 0;
-		double average = 0;
 
-		double min = listingItems.get(0).getPrice();
-		double max = 0;
-		
-		for(int i = 0; i <= listingItems.size()-1; i++)
-		{
-			total = total + listingItems.get(i).getPrice();
-			
-			if(listingItems.get(i).getPrice() < min)
-			{
-				min = listingItems.get(i).getPrice();
-			}
-			
-			if(listingItems.get(i).getPrice() > max)
-			{
-				max = listingItems.get(i).getPrice();
-			}
-		}
-		
-		average = total / listingItems.size();
-		
-		SummaryHistoryLog log = new SummaryHistoryLog(sum.getName(), average, min, max);
-		this.logService.createHistoryLog(log);
-		
-		sum.getHistoryLogs().add(log);
-		log.setSummary(sum);
-		
-		sum.setAverageCost(average);
-		sum.setMinCost(min);
-		sum.setMaxCost(max);
-		
-		//TODO: Create and add SummaryHistoryLog Object
-		
-		return this.sumRepo.save(sum);
-	}
 }

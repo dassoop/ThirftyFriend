@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.ThriftyFriend.models.ListingSummary;
 import com.example.ThriftyFriend.models.User;
 import com.example.ThriftyFriend.services.ListingSummaryService;
+import com.example.ThriftyFriend.services.SearchService;
 import com.example.ThriftyFriend.services.UserService;
 import com.example.ThriftyFriend.validators.UserValidator;
 
@@ -30,6 +31,8 @@ public class MainController
 	private UserService uService;
 	@Autowired
 	private ListingSummaryService sumService;
+	@Autowired
+	private SearchService searchService;
 	
 //HOMEPAGE - View main search home page
 	@GetMapping("/")
@@ -42,7 +45,7 @@ public class MainController
 		return "homepage.jsp";
 	}
 	
-//VIEW LOGIN/RED - View login and registration page
+//VIEW LOGIN/REG - View login and registration page
 	@GetMapping("/loginReg")
 	public String viewLoginReg(@ModelAttribute("user")User u, Model m, HttpSession session)
 	{
@@ -125,20 +128,20 @@ public class MainController
 	@GetMapping("/summary/create/{name}/{avg}/{min}/{max}")
 	public String createSummary(@PathVariable("name")String name, @PathVariable("avg")double avg, @PathVariable("min")double min, @PathVariable("max")double max, RedirectAttributes redirect)
 	{
+		name = name.trim();
 		if(this.sumService.existsByName(name))
 		{
 			redirect.addFlashAttribute("summaryExistsError", "There is already a listing summary by that name. Please use the search bar to find it.");
-			return "redirect:/viewListings/{name}";
+			return "redirect:/searchRequest/{name}";
 		}
 		else
 		{
 			this.sumService.createListingSummary(name, avg, min, max);
-			return "redirect:/viewListings/{name}";
+			return "redirect:/searchRequest/{name}";
 		}
 	}
 	
 //VIEW SUMMARY - Path to view a specific ListingSummary by ID 
-//**TO DO** add in update for summary information and log the dates for future data display. 
 	@GetMapping("/summary/{id}/view")
 	public String viewSummary(@PathVariable("id")Long id, Model m, HttpSession session)
 	{	
@@ -149,10 +152,8 @@ public class MainController
 			m.addAttribute("user", u);
 		}
 		
-		
 		ListingSummary sum = this.sumService.findById(id);
-		
-		this.sumService.summaryUpdateAndRefresh(sum);
+		this.searchService.summaryUpdateAndRefresh(sum);
 		
 		m.addAttribute("summary", sum);
 		return "viewSummary.jsp";

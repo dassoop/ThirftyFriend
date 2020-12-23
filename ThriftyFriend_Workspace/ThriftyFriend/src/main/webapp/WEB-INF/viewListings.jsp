@@ -34,7 +34,7 @@
 	
 	<div class="shadow-lg p-6 mb-5 bg-transparent rounded">
 		<div class="row ebayListings">
-			<div class="col-9">
+			<div class="col-7 listingsTable">
 				<table class="table table-light"> 
 					<thhead>
 						<th>Product Name</th>
@@ -52,7 +52,7 @@
 				</table>
 			</div>
 			
-			<div class="col-3">
+			<div class="col-5">
 				<table class="table table-light"> 
 					<tbody>
 						<tr>

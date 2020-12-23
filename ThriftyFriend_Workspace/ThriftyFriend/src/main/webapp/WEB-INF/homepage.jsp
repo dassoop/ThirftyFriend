@@ -14,7 +14,6 @@
 			<link rel="stylesheet" href="/css/style.css">
 			<link rel="preconnect" href="https://fonts.gstatic.com">
 			<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-<!-- ^ COPY HERE AND UP ^	 -->
 			
 <title>ThriftyFriend - Home Page</title>
 </head>
@@ -26,17 +25,13 @@
 
 	<div class="row">
 		<div class="col-md-8 offset-md-2" align="center">
-				<form action="/fakeSearchRequest" method="POST">
+				<form action="/searchRequest/name" method="GET">
 					<div class="form-group">
 						<label for="search"></label>
 						<input id="search" name="search" class="form-control" placeholder="Search for your product...">	
 						<button class="btn btn-primary mintButton">Search</button>
 					</div>
-					
-
-
-				</form> 
-			
+				</form> 			
 		</div>
 	</div>
 </div>
