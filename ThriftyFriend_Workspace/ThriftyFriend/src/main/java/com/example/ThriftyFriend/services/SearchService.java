@@ -26,8 +26,9 @@ public class SearchService
 	@Autowired
 	private ListingSummaryRepository sumRepo;
 	
-	private String token = "v^1.1#i^1#p^1#I^3#r^0#f^0#t^H4sIAAAAAAAAAOVYa2wUVRTuttua8qiBGJRn16lIRGf3zsx2HxN2YaFUts+lu2BbMWUed9ppZ2emM3dpN4oujRKD6A9ENCaWkkaNMfKwMYFE+UNjIGqMiFGMKeAjEEkE+UPQ+Lizu5RtJS3SDTZx/2zm3HPP/b7vnHPvnQGpktLl29dtvzrbdlfhQAqkCm02aiYoLSl+uKyocEFxAchxsA2kHkjZ+4ourDC5uKKzTdDUNdWEjt64opps2hggEobKapwpm6zKxaHJIoGNhurrWNoJWN3QkCZoCuEIVwUIxicxtNvvEWne6+b9Eraq12PGtAAhiUDyiTRFA0ECPp81bpoJGFZNxKkoQNCABiRFkzQTAx6WqWRptxOHayUcG6FhypqKXZyACKbhsum5Rg7WiaFypgkNhIMQwXCoOtoYCletbYitcOXECmZ1iCIOJcyxT2s0ETo2ckoCTryMmfZmowlBgKZJuIKZFcYGZUPXwdwG/LTUfooBgpfheej2iYyHyouU1ZoR59DEOCyLLJJS2pWFKpJRcjJFsRp8JxRQ9qkBhwhXOay/9QlOkSUZGgFi7epQSygSIYJ1nCrAaCJOxjoMWULJajLSVEUyXsbjZSoFnqR8HtqN6WUXykTLyjxupTWaKsqWaKajQUOrIUYNx2tD52iDnRrVRiMkIQtRrp/vuoY+qtVKaiaLCdShWnmFcSyEI/04eQZGZyNkyHwCwdEI4wfSEgUITtdlkRg/mK7FbPn0mgGiAyGddbl6enqcPYxTM9pdNACUq7m+Lip0wDhHYF+r1zP+8uQTSDlNRYB4pimzKKljLL24VjEAtZ0Iuhng9nizuo+FFRxv/Ychh7NrbEfkq0PcPMNwAvRQEPo5kabz0SHBbJG6LByQ55JknDO6INIVvBIp4DpLxKEhizicROPdEJKixy+Rbr8kkXyl6CEpCUIAIc8Lft//qVFutdSjUDAgykut563O9cf4bk8o3O6trauJ1SS7le5arZ0xhNpQk7eaizfWNgstLVX1MX9NS+BWu+Hm5AVNhxFNkYVkHhSwej2PKjCGGOEMlIxCRcGGKRE1LaLTK8nWfBMH4HTZaTW2U9DiLo3DO7plaksjnhLnkK6H4/EE4ngFhvOzm/9HO/lN6cn4rjOtOOH8ZRIpi5lLijOdTae5RXAa0NQSBr6fORutMzumdUEV74DI0BQFGhupKSf6TufX6vVJ9PiXh8Xtcc/fTWU61bagyLiE2qYbszuSUZmbZqcx5QE+L6jE75lT4rUmndNYcrqdQ+s0E0FxImr2R2/zWu0a+5IfLEj/qD7bB6DPdqjQZgMusJSqAPeXFG2wF81aYMoIOmVOcppyu4rfXQ3o7IJJnZONwhKbvoH7eWnOZ4WBJ8B9ox8WSouomTlfGcCiGyPF1N33zqYBRdMM8DCVtLsVVNwYtVPz7Pds8z63Z+uuwQMn/hQbPtv98dXh13e9B2aPOtlsxQX2PltBr+OXN0j9wU7tLXTm65G3v2gqv1x3dOSM7ai93Dy8vObct/XHZ5WdPfXpsV1lV/b/8MnhA70vX/lq30Vh0zz6o4XU4Mg3p5v6Nx3pXNVWOPT7I0deWba8svzNtcNP9cO5S2Zcef74j6n+VTPmtlwd/uMkVbOyYd5FvvPdlS99mFy/j2re2XZ+8/zLFb/OMV48v3DvogMV1050BfeU1XYNLV6sDL+a+su1v3xAKPtyS/Frrp8OLUtRp7ddG/z8hWPPNleVLvjtwgYImYcObmZP7l/3vf00HIk8HW9951wkuWrJEOIG91z67qzvmUsrhrbOeXyne+8pk3z+cCi2Y37/3B1P7h46uPNkhO8uE7T3M+n7Gz5lMm7wEQAA";
+	private String token = "v^1.1#i^1#p^1#I^3#f^0#r^0#t^H4sIAAAAAAAAAOVYfWwTZRhvu644cBiT+ZGppBxDjeSu79312utBGwtj0K1sde2Azhi83r23Hbuv3V3dSkZSFlngD0Iw8Q8MhGFiiBj5UEyEBP0LiCKi/uNXIkENQYh8RAUEo961ZXSTbMgaXGL/ae55n/d5n9/v9zzv+96BvKfmmaGlQ1drndNcw3mQdzmd+AxQ46meN7PKVV/tAGUOzuF8Q949WHV2gcHKksa0Q0NTFQN6+2VJMZiCMYxkdYVRWUM0GIWVocGYHJOMLoszBAYYTVdNlVMlxBtrDCMZQPozIAj8APJkEPotq3IzZkoNIwRFkxxPCX6OotgARVjjhpGFMcUwWcW0xgEBUJxACTIFaIakGYrCaJLoRLzLoW6IqmK5YACJFNJlCnP1slzHT5U1DKibVhAkEos2JduiscbFrakFvrJYkRIPSZM1s8bop0UqD73LWSkLx1/GKHgzySzHQcNAfJHiCqODMtGbydxF+gWq/RmC4DMsIYT4IE4BuiJUNqm6zJrj52FbRB4VCq4MVEzRzE3EqMVGZjXkzNJTqxUi1ui1/57LspIoiFAPI4sXRtPRRAKJxFmFg8msjKa6dVEwc01oor0RJYNkIEhSXAbF6QDht+CVFipGK9E8ZqVFqsKLNmmGt1U1F0IraziWG6KMG8upTWnTo4JpZ1Tmh4ObHBJ0py1qUcWs2a3YukLZIsJbeJxYgZHZpqmLmawJRyKMHShQFEZYTRN5ZOxgoRZL5dNvhJFu09QYn6+vrw/rIzFV7/IRAOC+lcviSa4byixi+dq9XvQXJ56AigUoHLRmGiJj5jQrl36rVq0ElC4k4ieBPxAs8T46rchY6z8MZZh9ozuiUh2CUywXoDmBxv00DPqFSnRIpFSkPjsPmGFzqMzqPdDUJJaDKGfVWVaGusgzJCUQJC1AlA+EBNQfEgQ0Q/EBFBcgBBBmMlyI/j81yp2WehJyOjQrUusVq3NtRaY3EI11BVvizanmXK/U26J2kTrXEm0PNrFyW8tKLp1uXJYKNafDd9oNtwfPqRpMqJLI5SrAgN3rFWSB1PkEq5u5JJQkyzApoIYNdGqJbM83rACsJmJ2Y2OcKvtU1trRbdOqQsaTwhzVtJgsZ002I8FYZXbz/2gnvy080brrTClMln5FIUW+eEnBCmpixkscpkNDzerW/Qxrs8/slNoDFWsHNHVVkqC+HJ+00PdaX7vXJ+DjXx4Wd4e9cjeVqVTbnCRaJbRqqiG7J4qK7BQ7jfEAoIM4YUGcFK5FBU1Tual2Di1VDRPy40FzL7nLa7Vv9Et+xFH44YPO98Cgc7/L6QQ+MBefA2Z7qjrcVffXG6IJMZEVMEPsUqx3Vx1iPTCnsaLu8ji1Dvbc3LLPCsMvgEdHPizUVOEzyr4ygMdvjVTjDzxSSwCcIEhAkzRFdYI5t0bd+MPuuidWbNp/YmNf6tvj59e6v3p2WvuNs2lQO+LkdFY73INOR+uxD/ADQx2r1+yWB+6rp3tbhrTfapec/zy0a+eBupPfadebux8zhKptbq/n2o0P9zh6wCXPnovX/qjl8I8uf3+27s939YGOjfiRfReuyOtf/vTI3sP1dXvn10ca/pLnr0PfmP701UNHT7wy4+uEuuPJDcdOr5338U/7IrucOzpX/pB//puDq5tW1Hz2VrW/Zy07Cz207dyG9NtbauKLLzVdiU6f232qPb99+rU3Zw/83HbhzC814FfHRsc7W188PDS8vmGeN3AwHU8MHHlqZ6jvlGuA3/P++Qdd607vPt5M5vrJq1/OvCx9cr3l6N5XNw///tCx/h3bN2/98eKsTXHP7u1fnDl4asvrO1+LnVxTlO9vnP7UhPARAAA=";
 	
+	//Main method to send search request to the Ebay API. Returns JSON Object of product listings with prices.
     public JSONObject requestSearch(String searchText)
     {
     	//Convert spaces in string to underscores for search query
@@ -58,6 +59,7 @@ public class SearchService
         return responseJSON;
     }
     
+    //Parse through the JSON Object returned from the Ebay API and assign it to temporary ListingItem Objects
     public List<ListingItem> parseSearchJSON(JSONObject response)
     {
 		//Start parsing through the JSON search response
@@ -84,6 +86,7 @@ public class SearchService
     	return searchResults;
     }
     
+    //Use ListingItem Objects price value to find the min, max, and average price of the listings returned.
     public List<Double> minMaxAvgAlgo(List<ListingItem> listingItems)
     {
 		//Algorithm to pull min, max, and average out of the list. 
@@ -115,6 +118,7 @@ public class SearchService
     	return mathResults;
     }
     
+    //Send a new request when viewing a specific Summary to make sure the values are up to date. 
 	public ListingSummary summaryUpdateAndRefresh(ListingSummary sum)
 	{				
 		//Send fresh search request

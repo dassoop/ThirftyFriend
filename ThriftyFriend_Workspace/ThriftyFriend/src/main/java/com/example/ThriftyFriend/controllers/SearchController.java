@@ -31,44 +31,27 @@ public class SearchController
 	@Autowired
 	private SearchService searchService;
 	
-	//Post mapping for main Search Bars
-	@PostMapping("/searchRequest")
-	public String searchRequest(@RequestParam("search")String searchText, Model m, HttpSession session)
-	{	
-		searchText = searchText.trim();
-		//Check for blank input form
-		if((searchText.trim().length() == 0) || searchText == null)
-		{
-			return "redirect:/";
-		}
-		//Get response data from Ebay API call in service	
-		JSONObject response = this.searchService.requestSearch(searchText);
-		List<ListingItem> listingItems = this.searchService.parseSearchJSON(response);	
-		List<Double> mathResults = this.searchService.minMaxAvgAlgo(listingItems);	
-		
-		//Search the Thrifty DataBase for a summary that already matches the name 
-		List<ListingSummary> listingSummaries = this.sumService.searchForSummary(searchText);
-		
-		//Check if there is a User logged in to display their name
-		if(session.getAttribute("user_id") != null)
-		{
-			User u = this.uService.findById((Long)session.getAttribute("user_id"));
-			m.addAttribute("user", u);
-		}
-		m.addAttribute("minCost", mathResults.get(0));
-		m.addAttribute("maxCost", mathResults.get(1));
-		m.addAttribute("averageCost", mathResults.get(2));		
-		m.addAttribute("searchedText", searchText);
-		m.addAttribute("listingItems", listingItems);
-		m.addAttribute("listingSummaries", listingSummaries);
-		return "viewListings.jsp";
-	}
 	
-	
-	//Used to refresh View Listings page data without form Post
+	//Mapping for search query. Homepage search bar uses the request parameter as input. 
+	//Otherwise refresh mappings are done with the path variable when viewing summaries for up to date information.
+	//Can only use one or the other, never both PathVariable and RequestParam. 
 	@GetMapping("/searchRequest/{name}")
-	public String refreshSearch(@PathVariable("name")String name, Model m, HttpSession session)
+	public String refreshSearch(@PathVariable("name")String name, @RequestParam(value = "search", required=false)String searchText, Model m, HttpSession session)
 	{	
+		if(searchText != null)
+		{
+			searchText = searchText.trim();
+			if(searchText.length() < 1)
+			{
+				return "redirect:/";			
+			}
+			else
+			{
+				name = searchText;
+			}
+		}
+		
+		System.out.println(name);
 		//Get response data from Ebay API call in service	
 		JSONObject response = this.searchService.requestSearch(name);
 		List<ListingItem> listingItems = this.searchService.parseSearchJSON(response);	
