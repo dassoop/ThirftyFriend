@@ -30,11 +30,12 @@ public class MainController
 	@PostMapping("/searchRequest")
 	public String searchRequest(@RequestParam("searchText")String searchText, Model m)
 	{
+		//Send JSON request and set to response. 
 		JSONObject response = this.searchService.requestSearch(searchText);
 		System.out.println(response);
-			
+				
+		//Start parsing through the JSON search response
 		JSONArray jArray = response.getJSONArray("itemSummaries");
-		
 		List<SearchResult> searchResults = new ArrayList<>();
 		
 		for(int i = 0; i < jArray.length(); i++)

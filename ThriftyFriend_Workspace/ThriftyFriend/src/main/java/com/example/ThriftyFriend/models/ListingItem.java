@@ -6,7 +6,27 @@ public class ListingItem
 {
 	private String name;
 	private double price;
+	private String imgUrl;
+
+	public ListingItem()
+	{
+		
+	}
 	
+	public ListingItem(String name, double price)
+	{
+		this.name = name;
+		this.price = price;
+	}
+	
+	public ListingItem(String name, double price, String imgUrl)
+	{
+		this.name = name;
+		this.price = price;
+		this.imgUrl = imgUrl;
+	}
+	
+	//GETTERS AND SETTERS
 	public String getName() 
 	{
 		return name;
@@ -24,10 +44,12 @@ public class ListingItem
 		this.price = price;
 	}
 
-	public ListingItem(String name, double price)
-	{
-		this.name = name;
-		this.price = price;
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	
 

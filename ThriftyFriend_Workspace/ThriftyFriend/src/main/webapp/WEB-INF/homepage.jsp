@@ -26,7 +26,7 @@
 
 	<div class="row">
 		<div class="col-md-8 offset-md-2" align="center">
-				<form action="/fakeSearchRequest" method="POST">
+				<form action="/searchRequest" method="POST">
 					<div class="form-group">
 						<label for="search"></label>
 						<input id="search" name="search" class="form-control" placeholder="Search for your product...">	

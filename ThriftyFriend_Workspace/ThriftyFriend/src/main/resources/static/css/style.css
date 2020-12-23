@@ -30,8 +30,13 @@
 {
 	margin-bottom: 50px;
 }
+.listingsTable
+{
+	height: 300px;
+	overflow: auto;
+}
 .historyLogDisplay
 {
 	height: 250px;
-	overflow-y: scroll;
+	overflow: auto;
 }
