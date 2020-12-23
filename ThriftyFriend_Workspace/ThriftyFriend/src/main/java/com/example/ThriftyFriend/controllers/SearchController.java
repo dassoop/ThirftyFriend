@@ -35,7 +35,7 @@ public class SearchController
 		List<ListingItem> listingItems = new ArrayList<>();
 		
 		//Create listing items and assign dummy data. These parameter assignments will be 
-		//replaced with the output of our Ebay API call as we loop through the JSON array. 
+		//Replaced with the output of our Ebay API call as we loop through the JSON array. 
 		listingItems.add(new ListingItem("iphone", 300.50));
 		listingItems.add(new ListingItem("iphone", 270));
 		listingItems.add(new ListingItem("iphone", 400));

@@ -5,7 +5,8 @@ public class ListingItem
 	private String name;
 	private double price;
 	
-	public String getName() {
+	public String getName() 
+	{
 		return name;
 	}
 
