@@ -1,5 +1,7 @@
 package com.example.ThriftyFriend.models;
 
+
+
 public class ListingItem 
 {
 	private String name;
@@ -27,4 +29,6 @@ public class ListingItem
 		this.name = name;
 		this.price = price;
 	}
+	
+
 }

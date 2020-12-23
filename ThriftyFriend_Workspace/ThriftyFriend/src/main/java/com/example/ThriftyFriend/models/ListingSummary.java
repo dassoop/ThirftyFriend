@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -32,6 +35,13 @@ public class ListingSummary
 	
 	@OneToMany(mappedBy="summary", fetch = FetchType.LAZY)
 	private List<SummaryHistoryLog> historyLogs;
+	
+	//Watchlist - Table of many ListingSummaries to many users
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="watchlist",
+				joinColumns = @JoinColumn(name="summary_id"),
+				inverseJoinColumns = @JoinColumn(name="user_id"))
+	private List<User> user_watchlist;
 	
 	@PrePersist
 	protected void createdAt()
