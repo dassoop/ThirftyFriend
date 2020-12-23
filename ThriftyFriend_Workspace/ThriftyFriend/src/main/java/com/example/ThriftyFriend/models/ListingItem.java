@@ -1,11 +1,6 @@
 package com.example.ThriftyFriend.models;
 
-import java.util.List;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 public class ListingItem 
 {
