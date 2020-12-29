@@ -42,6 +42,7 @@ public class MainController
 		{
 			m.addAttribute("user", this.uService.findById((Long)session.getAttribute("user_id")));
 		}
+			this.searchService.getAuthToken();
 		return "homepage.jsp";
 	}
 	
