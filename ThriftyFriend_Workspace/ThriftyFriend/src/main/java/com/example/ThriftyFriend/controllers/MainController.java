@@ -17,8 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.ThriftyFriend.models.ListingSummary;
 import com.example.ThriftyFriend.models.User;
+import com.example.ThriftyFriend.services.APIAuthService;
 import com.example.ThriftyFriend.services.ListingSummaryService;
-import com.example.ThriftyFriend.services.SearchService;
+import com.example.ThriftyFriend.services.APISearchService;
 import com.example.ThriftyFriend.services.UserService;
 import com.example.ThriftyFriend.validators.UserValidator;
 
@@ -32,7 +33,9 @@ public class MainController
 	@Autowired
 	private ListingSummaryService sumService;
 	@Autowired
-	private SearchService searchService;
+	private APISearchService searchService;
+	@Autowired
+	private APIAuthService authService;
 	
 //HOMEPAGE - View main search home page
 	@GetMapping("/")
@@ -42,7 +45,7 @@ public class MainController
 		{
 			m.addAttribute("user", this.uService.findById((Long)session.getAttribute("user_id")));
 		}
-			this.searchService.getAuthToken();
+		session.setAttribute("token", this.authService.getAuthToken());
 		return "homepage.jsp";
 	}
 	
@@ -154,7 +157,7 @@ public class MainController
 		}
 		
 		ListingSummary sum = this.sumService.findById(id);
-		this.searchService.summaryUpdateAndRefresh(sum);
+		this.searchService.summaryUpdateAndRefresh(sum, (String)session.getAttribute("token"));
 		
 		m.addAttribute("summary", sum);
 		return "viewSummary.jsp";

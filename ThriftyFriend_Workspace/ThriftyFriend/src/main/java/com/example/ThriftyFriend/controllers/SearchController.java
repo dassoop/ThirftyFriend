@@ -18,7 +18,7 @@ import com.example.ThriftyFriend.models.ListingItem;
 import com.example.ThriftyFriend.models.ListingSummary;
 import com.example.ThriftyFriend.models.User;
 import com.example.ThriftyFriend.services.ListingSummaryService;
-import com.example.ThriftyFriend.services.SearchService;
+import com.example.ThriftyFriend.services.APISearchService;
 import com.example.ThriftyFriend.services.UserService;
 
 @Controller
@@ -29,7 +29,7 @@ public class SearchController
 	@Autowired
 	private ListingSummaryService sumService;
 	@Autowired
-	private SearchService searchService;
+	private APISearchService searchService;
 	
 	
 	//Mapping for search query. Homepage search bar uses the request parameter as input. 
@@ -52,7 +52,7 @@ public class SearchController
 		}
 		
 		//Get response data from Ebay API call in service	
-		JSONObject response = this.searchService.requestSearch(name);
+		JSONObject response = this.searchService.requestSearch(name, (String)session.getAttribute("token"));
 		List<ListingItem> listingItems = this.searchService.parseSearchJSON(response);	
 		List<Double> mathResults = this.searchService.minMaxAvgAlgo(listingItems);	
 		

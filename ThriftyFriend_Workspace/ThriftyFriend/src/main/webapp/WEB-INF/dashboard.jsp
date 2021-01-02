@@ -14,7 +14,6 @@
 			<link rel="stylesheet" href="/css/style.css">
 			<link rel="preconnect" href="https://fonts.gstatic.com">
 			<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-<!-- ^ COPY HERE AND UP ^	 -->
 			
 <title>ThriftyFriend - Search Listings</title>
 </head>

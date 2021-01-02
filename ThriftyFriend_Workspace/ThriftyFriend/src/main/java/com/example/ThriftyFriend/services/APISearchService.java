@@ -2,8 +2,9 @@ package com.example.ThriftyFriend.services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,38 +21,18 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 @Service
-public class SearchService 
+public class APISearchService 
 {
 	@Autowired
 	private SummaryHistoryLogService logService;
 	@Autowired
 	private ListingSummaryRepository sumRepo;
+	@Autowired
+	private APICategoryService catService;
 	
-	//private String token = "v^1.1#i^1#p^1#I^3#f^0#r^0#t^H4sIAAAAAAAAAOVYfWwTZRhvu644cBiT+ZGppBxDjeSu79312utBGwtj0K1sde2Azhi83r23Hbuv3V3dSkZSFlngD0Iw8Q8MhGFiiBj5UEyEBP0LiCKi/uNXIkENQYh8RAUEo961ZXSTbMgaXGL/ae55n/d5n9/v9zzv+96BvKfmmaGlQ1drndNcw3mQdzmd+AxQ46meN7PKVV/tAGUOzuF8Q949WHV2gcHKksa0Q0NTFQN6+2VJMZiCMYxkdYVRWUM0GIWVocGYHJOMLoszBAYYTVdNlVMlxBtrDCMZQPozIAj8APJkEPotq3IzZkoNIwRFkxxPCX6OotgARVjjhpGFMcUwWcW0xgEBUJxACTIFaIakGYrCaJLoRLzLoW6IqmK5YACJFNJlCnP1slzHT5U1DKibVhAkEos2JduiscbFrakFvrJYkRIPSZM1s8bop0UqD73LWSkLx1/GKHgzySzHQcNAfJHiCqODMtGbydxF+gWq/RmC4DMsIYT4IE4BuiJUNqm6zJrj52FbRB4VCq4MVEzRzE3EqMVGZjXkzNJTqxUi1ui1/57LspIoiFAPI4sXRtPRRAKJxFmFg8msjKa6dVEwc01oor0RJYNkIEhSXAbF6QDht+CVFipGK9E8ZqVFqsKLNmmGt1U1F0IraziWG6KMG8upTWnTo4JpZ1Tmh4ObHBJ0py1qUcWs2a3YukLZIsJbeJxYgZHZpqmLmawJRyKMHShQFEZYTRN5ZOxgoRZL5dNvhJFu09QYn6+vrw/rIzFV7/IRAOC+lcviSa4byixi+dq9XvQXJ56AigUoHLRmGiJj5jQrl36rVq0ElC4k4ieBPxAs8T46rchY6z8MZZh9ozuiUh2CUywXoDmBxv00DPqFSnRIpFSkPjsPmGFzqMzqPdDUJJaDKGfVWVaGusgzJCUQJC1AlA+EBNQfEgQ0Q/EBFBcgBBBmMlyI/j81yp2WehJyOjQrUusVq3NtRaY3EI11BVvizanmXK/U26J2kTrXEm0PNrFyW8tKLp1uXJYKNafDd9oNtwfPqRpMqJLI5SrAgN3rFWSB1PkEq5u5JJQkyzApoIYNdGqJbM83rACsJmJ2Y2OcKvtU1trRbdOqQsaTwhzVtJgsZ002I8FYZXbz/2gnvy080brrTClMln5FIUW+eEnBCmpixkscpkNDzerW/Qxrs8/slNoDFWsHNHVVkqC+HJ+00PdaX7vXJ+DjXx4Wd4e9cjeVqVTbnCRaJbRqqiG7J4qK7BQ7jfEAoIM4YUGcFK5FBU1Tual2Di1VDRPy40FzL7nLa7Vv9Et+xFH44YPO98Cgc7/L6QQ+MBefA2Z7qjrcVffXG6IJMZEVMEPsUqx3Vx1iPTCnsaLu8ji1Dvbc3LLPCsMvgEdHPizUVOEzyr4ygMdvjVTjDzxSSwCcIEhAkzRFdYI5t0bd+MPuuidWbNp/YmNf6tvj59e6v3p2WvuNs2lQO+LkdFY73INOR+uxD/ADQx2r1+yWB+6rp3tbhrTfapec/zy0a+eBupPfadebux8zhKptbq/n2o0P9zh6wCXPnovX/qjl8I8uf3+27s939YGOjfiRfReuyOtf/vTI3sP1dXvn10ca/pLnr0PfmP701UNHT7wy4+uEuuPJDcdOr5338U/7IrucOzpX/pB//puDq5tW1Hz2VrW/Zy07Cz207dyG9NtbauKLLzVdiU6f232qPb99+rU3Zw/83HbhzC814FfHRsc7W188PDS8vmGeN3AwHU8MHHlqZ6jvlGuA3/P++Qdd607vPt5M5vrJq1/OvCx9cr3l6N5XNw///tCx/h3bN2/98eKsTXHP7u1fnDl4asvrO1+LnVxTlO9vnP7UhPARAAA=";
-	private String token = "";
-	
-	public JSONObject getAuthToken() {
-		HttpResponse<JsonNode> response = null;
-		JSONObject jsonResponse = null;
-		final String credentials = "KellyHow-ThriftyF-PRD-a736b19af-f0dcc13b:PRD-736b19afa887-f072-4d6e-a737-7572";
-			try {
-				response = Unirest.post("https://api.ebay.com/identity/v1/oauth2/token")
-						   .header("Content-Type", "application/x-www-form-urlencoded")
-						   .header("Authorization", "Basic "+ Base64.getEncoder().encodeToString(credentials.getBytes()))
-						   .body("grant_type=client_credentials&scope=https%3A%2F%2Fapi.ebay.com%2Foauth%2Fapi_scope")
-						   .asJson();
-				//assertEquals(201, response.getStatus());
-			} catch (UnirestException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			jsonResponse = response.getBody().getObject();
-			token = jsonResponse.getString("access_token"); 
-			return jsonResponse;
-	}
 	//Main method to send search request to the Ebay API. Returns JSON Object of product listings with prices.
-    public JSONObject requestSearch(String searchText)
-    {
+    public JSONObject requestSearch(String searchText, String token)
+    {    	
     	//Convert spaces in string to underscores for search query
     	List<String> searchTextSeperated = Arrays.asList(searchText.split(" "));
     	String combinedString = "";
@@ -99,8 +80,20 @@ public class SearchService
 			String title = obj.getString("title");
 			double price = Double.parseDouble(obj.getJSONObject("price").getString("value"));
 			String imageURL = obj.getJSONObject("image").getString("imageUrl");
-	
-			ListingItem listingItem = new ListingItem(title, price, imageURL);	
+			
+			//Loop through the category objects of the newly created listing item and add them as a list
+			JSONArray categories = obj.getJSONArray("categories");
+			List<String> categoryIdList = new ArrayList<>();
+			for(int index = 0; index < categories.length(); index++)
+			{
+				JSONObject catObj = categories.getJSONObject(index);
+				String categoryId = catObj.getString("categoryId");
+				categoryIdList.add(categoryId);
+			}
+			
+			//Create listing item for this search result
+			ListingItem listingItem = new ListingItem(title, price, imageURL, categoryIdList);	
+					
 			searchResults.add(listingItem);
 		}
 		
@@ -140,10 +133,10 @@ public class SearchService
     }
     
     //Send a new request when viewing a specific Summary to make sure the values are up to date. 
-	public ListingSummary summaryUpdateAndRefresh(ListingSummary sum)
+	public ListingSummary summaryUpdateAndRefresh(ListingSummary sum, String token)
 	{				
 		//Send fresh search request
-		JSONObject response = this.requestSearch(sum.getName());
+		JSONObject response = this.requestSearch(sum.getName(), token);
 		List<ListingItem> listingItems = this.parseSearchJSON(response);
 		List<Double> mathResults = this.minMaxAvgAlgo(listingItems);	
 		
