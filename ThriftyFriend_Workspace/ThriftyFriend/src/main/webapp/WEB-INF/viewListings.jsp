@@ -39,6 +39,7 @@
 					<thhead>
 						<th>Product Name</th>
 						<th>Product Price</th>
+						<th>Category ID's</th>
 					</thhead>
 					
 					<tbody>
@@ -46,6 +47,9 @@
 							<tr>
 								<td>${listing.name}</td>
 								<td>${listing.price}</td>
+								<c:forEach items="${listing.categoryIdList}" var="catId"> 
+									<td>${catId}</td>
+								</c:forEach>
 							</tr>
 						</c:forEach>
 					</tbody>
