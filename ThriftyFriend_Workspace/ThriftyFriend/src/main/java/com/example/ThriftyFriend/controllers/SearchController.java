@@ -53,7 +53,7 @@ public class SearchController
 		
 		//Get response data from Ebay API call in service	
 		JSONObject response = this.searchService.requestSearch(name, (String)session.getAttribute("token"));
-		List<ListingItem> listingItems = this.searchService.parseSearchJSON(response);	
+		List<ListingItem> listingItems = this.searchService.parseSearchJSON(response, (String)session.getAttribute("token"));	
 		List<Double> mathResults = this.searchService.minMaxAvgAlgo(listingItems);	
 		
 		//Search the Thrifty DataBase for a summary that already matches the name 

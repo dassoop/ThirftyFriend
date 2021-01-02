@@ -62,7 +62,7 @@ public class APISearchService
     }
     
     //Parse through the JSON Object returned from the Ebay API and assign it to temporary ListingItem Objects
-    public List<ListingItem> parseSearchJSON(JSONObject response)
+    public List<ListingItem> parseSearchJSON(JSONObject response, String token)
     {
 		//Start parsing through the JSON search response
 		JSONArray jArray = response.getJSONArray("itemSummaries");
@@ -96,7 +96,9 @@ public class APISearchService
 					
 			searchResults.add(listingItem);
 		}
-		
+		//TODO: find a better way to get the category name from the ID
+//		catService.getCategoryList(token);
+//		catService.getCategoryTree(token);
     	return searchResults;
     }
     
@@ -137,7 +139,7 @@ public class APISearchService
 	{				
 		//Send fresh search request
 		JSONObject response = this.requestSearch(sum.getName(), token);
-		List<ListingItem> listingItems = this.parseSearchJSON(response);
+		List<ListingItem> listingItems = this.parseSearchJSON(response, token);
 		List<Double> mathResults = this.minMaxAvgAlgo(listingItems);	
 		
 		//Log current price as history log

@@ -15,14 +15,13 @@ public class APICategoryService
 {
 	public String marketplace = "EBAY_US";
 	
-	public void getCategoryTree(String token)
+	public String getCategoryTree(String token)
 	{
 		HttpResponse<JsonNode> response = null;
 		JSONObject jsonResponse = null;
 			try 
 			{
-				response = Unirest.post("https://api.ebay.com/commerce/taxonomy/v1_beta/get_default_category_tree_id?marketplace_id=" + marketplace)
-						   .header("Content-Type", "application/x-www-form-urlencoded")
+				response = Unirest.get("https://api.ebay.com/commerce/taxonomy/v1_beta/get_default_category_tree_id?marketplace_id=" + marketplace)
 						   .header("Authorization", "Bearer " + token)
 						   .asJson();
 			} 
@@ -31,11 +30,28 @@ public class APICategoryService
 				e.printStackTrace();
 			}
 			jsonResponse = response.getBody().getObject();
-			System.out.println(response);	
+			String categoryTreeId = jsonResponse.getString("categoryTreeId");
+			System.out.println(categoryTreeId);
+			return categoryTreeId;
 	}
 	
-	public void getCategories(String token)
+	public void getCategoryList(String token)
 	{
-
+		HttpResponse<JsonNode> response = null;
+		JSONObject jsonResponse = null;
+			try 
+			{
+				response = Unirest.get("https://api.ebay.com/commerce/taxonomy/v1_beta/category_tree/0")
+						   .header("Authorization", "Bearer " + token)
+						   .header("Accept-Encoding", "application/gzip")
+						   .asJson();
+			} 
+			catch (UnirestException e) 
+			{
+				e.printStackTrace();
+			}
+//			jsonResponse = response.getBody().getObject();
+			System.out.println(response);
+			//TODO: add gzip parsing?
 	}
 }
