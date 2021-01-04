@@ -15,14 +15,14 @@
 </head>
 	<body>
 	<div class="wrapper">
-		<div class="container-fluid banner">
+		<div class="container-fluid banner bg-transparent">
 		
 		
 			<div class="row">
 				<div class="col-md-12">
-					<nav class="navbar">
+					<nav class="navbar bg-white">
 					
-						<div class="navbar-brand">			
+						<div class="navbar-brand bg-white">			
 							<img src="/img/Logo_1.png" alt="Italian Trulli" style="height:80px; padding:0px; margin:0px;">
 						</div>
 						
@@ -59,10 +59,10 @@
 					<p class="redText" id="notLoggedError">${notLoggedError}</p>
 					<c:choose>
 							<c:when test="${user.name != null}">
-								<p>Logged in as ${user.name}</p>
+								<p><b>Logged in as - </b>${user.name}</p>
 							</c:when>
 							<c:otherwise>
-								<p>No user logged in</p>
+								<p><b>No user logged in</b></p>
 							</c:otherwise>
 						</c:choose>	
 				</div>

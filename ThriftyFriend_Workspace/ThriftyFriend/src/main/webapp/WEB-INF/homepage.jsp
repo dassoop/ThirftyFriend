@@ -29,7 +29,7 @@
 					<div class="form-group">
 						<label for="search"></label>
 						<input id="search" name="search" class="form-control" placeholder="Search for your product...">	
-						<button class="btn btn-primary mintButton">Search</button>
+						<button id="searchbutton" class="btn btn-primary mintButton">Search</button>
 					</div>
 				</form> 			
 		</div>

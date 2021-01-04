@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col">
 			<div class="box">
-				<div class="shadow-lg p-3 mb-5 bg-transparent rounded">
+				<div class="shadow-lg p-4 mb-5 bg-white rounded">
 					<div class="form">
 							<h1>Register User</h1>
 						
@@ -67,7 +67,7 @@
 		
 		<div class="col">
 		<div class="box">
-			<div class="shadow-lg p-3 mb-5 bg-transparent rounded">
+			<div class="shadow-lg p-4 mb-5 bg-white rounded">
 				<h1>Login</h1>
 				
 				<form action="/login" method="POST">

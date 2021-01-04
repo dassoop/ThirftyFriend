@@ -12,11 +12,33 @@
 
 #search
 {
-	margin-top: 25%; 
+	margin-top: 25%;
+	margin-bottom: 0px; 
 	width: 80%; 
 	display:inline-block;
 }
-
+#searchbutton{
+	margin-bottom: 5px;
+}
+.searchtitle{
+	padding: 5px;
+}
+#watchlist-dashboard{
+	padding: 2em;
+}
+#mintbutton1{
+	display: inline-block;
+}
+body{
+      background-image: url(/img/Logo_1_transparent_rotate.png);
+      position: sticky;
+      background-size: 150px;
+      background-repeat: round repeat;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+}
 .mintButton
 {
 	background-color: #5ddac2;
