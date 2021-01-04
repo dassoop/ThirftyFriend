@@ -10,15 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.ThriftyFriend.models.ListingItem;
 import com.example.ThriftyFriend.models.ListingSummary;
 import com.example.ThriftyFriend.models.User;
-import com.example.ThriftyFriend.services.ListingSummaryService;
+import com.example.ThriftyFriend.services.APICategoryService;
 import com.example.ThriftyFriend.services.APISearchService;
+import com.example.ThriftyFriend.services.ListingSummaryService;
 import com.example.ThriftyFriend.services.UserService;
 
 @Controller
@@ -30,6 +29,8 @@ public class SearchController
 	private ListingSummaryService sumService;
 	@Autowired
 	private APISearchService searchService;
+	@Autowired
+	private APICategoryService catService;
 	
 	
 	//Mapping for search query. Homepage search bar uses the request parameter as input. 
@@ -54,7 +55,8 @@ public class SearchController
 		//Get response data from Ebay API call in service	
 		JSONObject response = this.searchService.requestSearch(name, (String)session.getAttribute("token"));
 		List<ListingItem> listingItems = this.searchService.parseSearchJSON(response, (String)session.getAttribute("token"));	
-		List<Double> mathResults = this.searchService.minMaxAvgAlgo(listingItems);	
+		List<Double> mathResults = this.searchService.minMaxAvgAlgo(listingItems);
+//		catService.suggestedCategory((String)session.getAttribute("token"), name);
 		
 		//Search the Thrifty DataBase for a summary that already matches the name 
 		List<ListingSummary> listingSummaries = this.sumService.searchForSummary(name);
