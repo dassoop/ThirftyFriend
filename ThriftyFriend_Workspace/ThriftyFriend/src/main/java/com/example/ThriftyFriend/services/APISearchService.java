@@ -80,6 +80,7 @@ public class APISearchService
 			String title = obj.getString("title");
 			double price = Double.parseDouble(obj.getJSONObject("price").getString("value"));
 			String imageURL = obj.getJSONObject("image").getString("imageUrl");
+			String itemWebUrl = obj.getString("itemWebUrl");
 			
 			//Loop through the category objects of the newly created listing item and add them as a list
 			JSONArray categories = obj.getJSONArray("categories");
@@ -92,7 +93,7 @@ public class APISearchService
 			}
 			
 			//Create listing item for this search result
-			ListingItem listingItem = new ListingItem(title, price, imageURL, categoryIdList);	
+			ListingItem listingItem = new ListingItem(title, price, imageURL, categoryIdList, itemWebUrl);	
 					
 			searchResults.add(listingItem);
 		}

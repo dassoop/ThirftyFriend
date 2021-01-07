@@ -59,7 +59,7 @@
 						</thead>
 					
 						<tbody>
-							<c:forEach items="${summary.historyLogs}" var="log">
+							<c:forEach items="${historyLogs}" var="log">
 								<tr>
 									<td class = 'columnDate'><fmt:formatDate value="${log.createdAt}" type="both"/></td>
 									<td class = 'columnPrice'>${log.averageCost}</td>

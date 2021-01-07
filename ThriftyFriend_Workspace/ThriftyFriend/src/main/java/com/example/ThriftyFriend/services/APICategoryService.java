@@ -54,4 +54,24 @@ public class APICategoryService
 			System.out.println(response);
 			//TODO: add gzip parsing?
 	}
+	
+	public void suggestedCategory(String token, String search)
+	{
+		HttpResponse<JsonNode> response = null;
+		JSONObject jsonResponse = null;
+			try 
+			{
+				response = Unirest.get("https://api.ebay.com/commerce/taxonomy/v1_beta/category_tree/0/get_category_suggestions?q=" + search)
+						   .header("Authorization", "Bearer " + token)
+						   .asJson();
+			} 
+			catch (UnirestException e) 
+			{
+				e.printStackTrace();
+			}
+			jsonResponse = response.getBody().getObject();
+			System.out.println(jsonResponse);
+			
+			
+	}
 }
