@@ -80,25 +80,28 @@ public class APISearchService
 			String title = obj.getString("title");
 			double price = Double.parseDouble(obj.getJSONObject("price").getString("value"));
 			String imageURL = obj.getJSONObject("image").getString("imageUrl");
+			String itemWebUrl = obj.getString("itemWebUrl");
 			
 			//Loop through the category objects of the newly created listing item and add them as a list
 			JSONArray categories = obj.getJSONArray("categories");
 			List<String> categoryIdList = new ArrayList<>();
+			List<String> categoryNameList = new ArrayList<>();
 			for(int index = 0; index < categories.length(); index++)
 			{
 				JSONObject catObj = categories.getJSONObject(index);
+				
 				String categoryId = catObj.getString("categoryId");
 				categoryIdList.add(categoryId);
+				String catName = this.catService.getCategoryInfo(token, categoryId);
+				categoryNameList.add(catName);
 			}
 			
 			//Create listing item for this search result
-			ListingItem listingItem = new ListingItem(title, price, imageURL, categoryIdList);	
+			ListingItem listingItem = new ListingItem(title, price, imageURL, categoryIdList, categoryNameList, itemWebUrl);	
 					
 			searchResults.add(listingItem);
 		}
 		//TODO: find a better way to get the category name from the ID
-//		catService.getCategoryList(token);
-//		catService.getCategoryTree(token);
     	return searchResults;
     }
     

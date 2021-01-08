@@ -36,20 +36,27 @@
 		<div class="row ebayListings">
 			<div class="col-7 listingsTable">
 				<table class="table table-light bg-white"> 
+
 					<thhead>
+						<th>View on Ebay</th>
 						<th>Product Name</th>
 						<th>Product Price</th>
-						<th>Category ID's</th>
+						<th>Category Name</th>
 					</thhead>
 					
 					<tbody>
 						<c:forEach items="${listingItems}" var="listing">
 							<tr>
+								<td><a href="${listing.linkUrl}">View</a>
 								<td>${listing.name}</td>
 								<td>${listing.price}</td>
-								<c:forEach items="${listing.categoryIdList}" var="catId"> 
-									<td>${catId}</td>
-								</c:forEach>
+								<td>
+									<ul>
+										<c:forEach items="${listing.categoryNameList}" var="catId"> 
+											<li>${catId}</li>
+										</c:forEach>
+									</ul>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -57,6 +64,7 @@
 			</div>
 			
 			<div class="col-5 bg-white">
+
 				<table class="table table-light"> 
 					<tbody>
 						<tr>

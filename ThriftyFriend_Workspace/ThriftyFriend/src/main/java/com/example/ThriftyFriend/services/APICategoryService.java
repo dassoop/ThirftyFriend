@@ -1,7 +1,6 @@
 package com.example.ThriftyFriend.services;
 
-import java.util.Base64;
-
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +13,15 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 public class APICategoryService 
 {
 	public String marketplace = "EBAY_US";
+	public String appId = "KellyHow-ThriftyF-PRD-a736b19af-f0dcc13b";
 	
-	public String getCategoryTree(String token)
+	public String getCategoryInfo(String token, String catId)
 	{
 		HttpResponse<JsonNode> response = null;
 		JSONObject jsonResponse = null;
 			try 
 			{
-				response = Unirest.get("https://api.ebay.com/commerce/taxonomy/v1_beta/get_default_category_tree_id?marketplace_id=" + marketplace)
+				response = Unirest.get("https://open.api.ebay.com/Shopping?callname=GetCategoryInfo&appid=LanceSum-ThriftyF-PRD-3736735cb-18624020&version=967&siteid=0&CategoryID="+ catId +"&responseencoding=JSON")
 						   .header("Authorization", "Bearer " + token)
 						   .asJson();
 			} 
@@ -30,28 +30,13 @@ public class APICategoryService
 				e.printStackTrace();
 			}
 			jsonResponse = response.getBody().getObject();
-			String categoryTreeId = jsonResponse.getString("categoryTreeId");
-			System.out.println(categoryTreeId);
-			return categoryTreeId;
-	}
-	
-	public void getCategoryList(String token)
-	{
-		HttpResponse<JsonNode> response = null;
-		JSONObject jsonResponse = null;
-			try 
+			JSONArray categoryArray = jsonResponse.getJSONObject("CategoryArray").getJSONArray("Category");
+			String catName = "";
+			for(int i = 0; i < categoryArray.length(); i++)
 			{
-				response = Unirest.get("https://api.ebay.com/commerce/taxonomy/v1_beta/category_tree/0")
-						   .header("Authorization", "Bearer " + token)
-						   .header("Accept-Encoding", "application/gzip")
-						   .asJson();
-			} 
-			catch (UnirestException e) 
-			{
-				e.printStackTrace();
+				JSONObject catObj = categoryArray.getJSONObject(i);
+				catName = catObj.getString("CategoryName");
 			}
-//			jsonResponse = response.getBody().getObject();
-			System.out.println(response);
-			//TODO: add gzip parsing?
+			return catName;
 	}
 }

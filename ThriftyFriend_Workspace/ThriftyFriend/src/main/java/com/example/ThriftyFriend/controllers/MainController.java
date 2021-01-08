@@ -1,5 +1,7 @@
 package com.example.ThriftyFriend.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.ThriftyFriend.models.ListingSummary;
+import com.example.ThriftyFriend.models.SummaryHistoryLog;
 import com.example.ThriftyFriend.models.User;
 import com.example.ThriftyFriend.services.APIAuthService;
-import com.example.ThriftyFriend.services.ListingSummaryService;
 import com.example.ThriftyFriend.services.APISearchService;
+import com.example.ThriftyFriend.services.ListingSummaryService;
+import com.example.ThriftyFriend.services.SummaryHistoryLogService;
 import com.example.ThriftyFriend.services.UserService;
 import com.example.ThriftyFriend.validators.UserValidator;
 
@@ -36,6 +40,8 @@ public class MainController
 	private APISearchService searchService;
 	@Autowired
 	private APIAuthService authService;
+	@Autowired
+	private SummaryHistoryLogService logService;
 	
 //HOMEPAGE - View main search home page
 	@GetMapping("/")
@@ -157,8 +163,10 @@ public class MainController
 		}
 		
 		ListingSummary sum = this.sumService.findById(id);
+		List<SummaryHistoryLog> historyLogs = this.logService.findAllBySummary(sum);
 		this.searchService.summaryUpdateAndRefresh(sum, (String)session.getAttribute("token"));
 		
+		m.addAttribute("historyLogs", historyLogs);
 		m.addAttribute("summary", sum);
 		return "viewSummary.jsp";
 	}
