@@ -13,6 +13,7 @@
 				crossorigin="anonymous">
 			<link rel="stylesheet" href="/css/style.css">
 			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 			<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 			
 <title>ThriftyFriend - View Summary</title>
@@ -60,8 +61,8 @@
 						<tbody>
 							<c:forEach items="${historyLogs}" var="log">
 								<tr>
-									<td><fmt:formatDate value="${log.createdAt}" type="both"/></td>
-									<td>${log.averageCost}</td>
+									<td class = 'columnDate'><fmt:formatDate value="${log.createdAt}" type="both"/></td>
+									<td class = 'columnPrice'>${log.averageCost}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -79,7 +80,10 @@
 	</div> 
 
 </div>
-
+<div class = "container">
+	<canvas id="chart"></canvas>
+</div>
 </t:wrapper>
+<script src="/Javascript/graph.js"></script>
 </body>
 </html>
