@@ -24,18 +24,19 @@
 
 <div class="container">
 
-	<div class="shadow-lg p-3 mb-5 bg-transparent rounded">
-		<div class="row">
+	<div class="shadow-lg p-3 mb-5 bg-white rounded">
+		<div class="searchtitle">
 			<h3>You searched for: ${searchedText}</h3>	
 		</div>
 	</div>
 
 	<p>Listings from Ebay</p>
 	
-	<div class="shadow-lg p-6 mb-5 bg-transparent rounded">
+	<div class="shadow-lg p-6 mb-5 bg-white rounded">
 		<div class="row ebayListings">
-			<div class="col-9 listingsTable">
-				<table class="table table-light"> 
+			<div class="col-7 listingsTable">
+				<table class="table table-light bg-white"> 
+
 					<thhead>
 						<th>View on Ebay</th>
 						<th>Product Name</th>
@@ -62,7 +63,8 @@
 				</table>
 			</div>
 			
-			<div class="col-3">
+			<div class="col-5 bg-white">
+
 				<table class="table table-light"> 
 					<tbody>
 						<tr>
@@ -107,13 +109,11 @@
 		</div>
 	</div>
 	
-	<div class="row">
+	<div class="createsummaryfoot">
 		<p class="redText">${summaryExistsError}</p>
 		<h5>If your item does not already exist in our Database, go ahead and add it here.</h5>
-	</div>
-	
-	<div class="row">
-		<a href="/summary/create/${searchedText}/${averageCost}/${minCost}/${maxCost}" class="btn btn-primary mintButton">Create Summary</a>
+
+		<a href="/summary/create/${searchedText}/${averageCost}/${minCost}/${maxCost}" id="mintbutton1" class="btn btn-primary mintButton">Create Summary</a>
 	</div>
 	
 	<div class="footer">

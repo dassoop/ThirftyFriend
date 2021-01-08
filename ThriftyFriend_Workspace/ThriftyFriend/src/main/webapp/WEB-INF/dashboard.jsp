@@ -23,7 +23,7 @@
 <div class="container">
 	<div class="row">
 	
-		<div class="col shadow-lg rounded">
+		<div id="watchlist-dashboard" class="col shadow-lg rounded bg-white">
 			<h5>Watchlist</h5>
 				<table class="table table-light"> 
 					<thead>
