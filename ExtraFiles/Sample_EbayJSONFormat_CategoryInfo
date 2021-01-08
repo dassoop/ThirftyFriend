@@ -1,0 +1,25 @@
+{
+	"Timestamp":"2021-01-07T23:10:59.931Z",
+	"Ack":"Success",
+	"Build":"E1157_CORE_APILW_19146596_R1",
+	"Version":"1157",
+	"CategoryArray":
+	{
+		
+		"Category":
+		[
+			{
+			"CategoryID":"9355",
+			"CategoryLevel":2,
+			"CategoryName":"Cell Phones & Smartphones",
+			"CategoryParentID":"15032",
+			"CategoryNamePath":"Cell Phones & Accessories:Cell Phones & Smartphones",
+			"CategoryIDPath":"15032:9355",
+			"LeafCategory":true
+			}
+		]
+	},
+"CategoryCount":1,
+"UpdateTime":"2020-10-06T02:05:54.000Z",
+"CategoryVersion":"124"
+}

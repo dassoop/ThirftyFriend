@@ -90,6 +90,7 @@ public class APISearchService
 				JSONObject catObj = categories.getJSONObject(index);
 				String categoryId = catObj.getString("categoryId");
 				categoryIdList.add(categoryId);
+				this.catService.getCategoryInfo(token, categoryId);
 			}
 			
 			//Create listing item for this search result
@@ -98,8 +99,6 @@ public class APISearchService
 			searchResults.add(listingItem);
 		}
 		//TODO: find a better way to get the category name from the ID
-//		catService.getCategoryList(token);
-//		catService.getCategoryTree(token);
     	return searchResults;
     }
     
