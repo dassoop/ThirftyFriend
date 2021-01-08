@@ -8,6 +8,7 @@ public class ListingItem
 	private double price;
 	private String imgUrl;
 	private List<String> categoryIdList;
+	private List<String> categoryNameList;
 	private String linkUrl;
 
 	public ListingItem()
@@ -21,12 +22,13 @@ public class ListingItem
 		this.price = price;
 	}
 	
-	public ListingItem(String name, double price, String imgUrl, List<String> categoryIdList, String linkUrl)
+	public ListingItem(String name, double price, String imgUrl, List<String> categoryIdList, List<String> categoryNameList, String linkUrl)
 	{
 		this.name = name;
 		this.price = price;
 		this.imgUrl = imgUrl;
 		this.categoryIdList = categoryIdList;
+		this.categoryNameList = categoryNameList;
 		this.linkUrl = linkUrl;
 	}
 	
@@ -70,6 +72,14 @@ public class ListingItem
 
 	public void setLinkUrl(String linkUrl) {
 		this.linkUrl = linkUrl;
+	}
+
+	public List<String> getCategoryNameList() {
+		return categoryNameList;
+	}
+
+	public void setCategoryNameList(List<String> categoryNameList) {
+		this.categoryNameList = categoryNameList;
 	}
 
 	

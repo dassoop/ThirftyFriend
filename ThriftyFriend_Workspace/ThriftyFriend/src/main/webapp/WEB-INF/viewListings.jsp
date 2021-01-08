@@ -34,13 +34,13 @@
 	
 	<div class="shadow-lg p-6 mb-5 bg-transparent rounded">
 		<div class="row ebayListings">
-			<div class="col-7 listingsTable">
+			<div class="col-9 listingsTable">
 				<table class="table table-light"> 
 					<thhead>
 						<th>View on Ebay</th>
 						<th>Product Name</th>
 						<th>Product Price</th>
-						<th>Category ID's</th>
+						<th>Category Name</th>
 					</thhead>
 					
 					<tbody>
@@ -51,7 +51,7 @@
 								<td>${listing.price}</td>
 								<td>
 									<ul>
-										<c:forEach items="${listing.categoryIdList}" var="catId"> 
+										<c:forEach items="${listing.categoryNameList}" var="catId"> 
 											<li>${catId}</li>
 										</c:forEach>
 									</ul>
@@ -62,7 +62,7 @@
 				</table>
 			</div>
 			
-			<div class="col-5">
+			<div class="col-3">
 				<table class="table table-light"> 
 					<tbody>
 						<tr>

@@ -36,7 +36,6 @@ public class APICategoryService
 			{
 				JSONObject catObj = categoryArray.getJSONObject(i);
 				catName = catObj.getString("CategoryName");
-				System.out.println(catName);
 			}
 			return catName;
 	}

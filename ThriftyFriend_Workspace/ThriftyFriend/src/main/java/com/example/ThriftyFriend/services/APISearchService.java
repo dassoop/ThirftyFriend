@@ -85,16 +85,19 @@ public class APISearchService
 			//Loop through the category objects of the newly created listing item and add them as a list
 			JSONArray categories = obj.getJSONArray("categories");
 			List<String> categoryIdList = new ArrayList<>();
+			List<String> categoryNameList = new ArrayList<>();
 			for(int index = 0; index < categories.length(); index++)
 			{
 				JSONObject catObj = categories.getJSONObject(index);
+				
 				String categoryId = catObj.getString("categoryId");
 				categoryIdList.add(categoryId);
-				this.catService.getCategoryInfo(token, categoryId);
+				String catName = this.catService.getCategoryInfo(token, categoryId);
+				categoryNameList.add(catName);
 			}
 			
 			//Create listing item for this search result
-			ListingItem listingItem = new ListingItem(title, price, imageURL, categoryIdList, itemWebUrl);	
+			ListingItem listingItem = new ListingItem(title, price, imageURL, categoryIdList, categoryNameList, itemWebUrl);	
 					
 			searchResults.add(listingItem);
 		}
