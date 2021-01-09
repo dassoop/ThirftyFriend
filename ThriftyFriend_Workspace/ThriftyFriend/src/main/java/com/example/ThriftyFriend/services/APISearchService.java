@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,8 @@ public class APISearchService
 	private ListingSummaryRepository sumRepo;
 	@Autowired
 	private APICategoryService catService;
+	@Autowired
+	private APIAuthService authService;
 	
 	//Main method to send search request to the Ebay API. Returns JSON Object of product listings with prices.
     public JSONObject requestSearch(String searchText, String token)
@@ -64,6 +64,11 @@ public class APISearchService
     //Parse through the JSON Object returned from the Ebay API and assign it to temporary ListingItem Objects
     public List<ListingItem> parseSearchJSON(JSONObject response, String token)
     {
+    	if(response.has("errors"))
+    	{
+    		System.out.println("NO TOKEN");
+    		this.authService.getAuthToken();
+    	}
 		//Start parsing through the JSON search response
 		JSONArray jArray = response.getJSONArray("itemSummaries");
 		List<ListingItem> searchResults = new ArrayList<>();
@@ -83,25 +88,28 @@ public class APISearchService
 			String itemWebUrl = obj.getString("itemWebUrl");
 			
 			//Loop through the category objects of the newly created listing item and add them as a list
-			JSONArray categories = obj.getJSONArray("categories");
 			List<String> categoryIdList = new ArrayList<>();
 			List<String> categoryNameList = new ArrayList<>();
-			for(int index = 0; index < categories.length(); index++)
-			{
-				JSONObject catObj = categories.getJSONObject(index);
-				
-				String categoryId = catObj.getString("categoryId");
-				categoryIdList.add(categoryId);
-				String catName = this.catService.getCategoryInfo(token, categoryId);
-				categoryNameList.add(catName);
-			}
+//			if(obj.getJSONArray("categories")!=null)
+//			{
+//				JSONArray categories = obj.getJSONArray("categories");
+//				
+//				for(int index = 0; index < categories.length(); index++)
+//				{
+//					JSONObject catObj = categories.getJSONObject(index);				
+//					String categoryId = catObj.getString("categoryId");
+//					categoryIdList.add(categoryId);
+//					String catName = this.catService.getCategoryInfo(token, categoryId);
+////					categoryNameList.add(catName);
+//				}
+//			}
+
 			
 			//Create listing item for this search result
 			ListingItem listingItem = new ListingItem(title, price, imageURL, categoryIdList, categoryNameList, itemWebUrl);	
 					
 			searchResults.add(listingItem);
 		}
-		//TODO: find a better way to get the category name from the ID
     	return searchResults;
     }
     
@@ -139,9 +147,10 @@ public class APISearchService
     
     //Send a new request when viewing a specific Summary to make sure the values are up to date. 
 	public ListingSummary summaryUpdateAndRefresh(ListingSummary sum, String token)
-	{				
+	{			
 		//Send fresh search request
 		JSONObject response = this.requestSearch(sum.getName(), token);
+//		System.out.println(response);
 		List<ListingItem> listingItems = this.parseSearchJSON(response, token);
 		List<Double> mathResults = this.minMaxAvgAlgo(listingItems);	
 		
@@ -150,7 +159,8 @@ public class APISearchService
 		this.logService.createHistoryLog(log);
 		sum.getHistoryLogs().add(log);
 		log.setSummary(sum);
-		
+		this.logService.saveLog(log);
+
 		//Set Summary values
 		sum.setAverageCost(mathResults.get(2));
 		sum.setMaxCost(mathResults.get(1));

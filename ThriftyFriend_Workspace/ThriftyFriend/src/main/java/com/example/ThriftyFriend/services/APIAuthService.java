@@ -13,9 +13,11 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 @Service
 public class APIAuthService
 {
+	String token = "";
+	
 	public String getAuthToken() 
 	{
-		String token = "";
+
 		
 		HttpResponse<JsonNode> response = null;
 		JSONObject jsonResponse = null;
@@ -37,5 +39,10 @@ public class APIAuthService
 			jsonResponse = response.getBody().getObject();
 			token = jsonResponse.getString("access_token"); 
 			return token;
+	}
+	
+	public String returnToken()
+	{
+		return token;
 	}
 }

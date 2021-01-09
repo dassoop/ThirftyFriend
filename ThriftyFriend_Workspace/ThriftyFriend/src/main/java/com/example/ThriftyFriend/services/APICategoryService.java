@@ -30,6 +30,7 @@ public class APICategoryService
 				e.printStackTrace();
 			}
 			jsonResponse = response.getBody().getObject();
+			System.out.println(jsonResponse);
 			JSONArray categoryArray = jsonResponse.getJSONObject("CategoryArray").getJSONArray("Category");
 			String catName = "";
 			for(int i = 0; i < categoryArray.length(); i++)

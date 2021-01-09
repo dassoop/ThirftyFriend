@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+
 @Entity
 @Table(name="summaryHistoryLogs")
 public class SummaryHistoryLog 
@@ -37,7 +40,7 @@ public class SummaryHistoryLog
 	{
 		this.createdAt = new Date();
 	}
-	
+		
 	public SummaryHistoryLog()
 	{
 		
@@ -49,6 +52,11 @@ public class SummaryHistoryLog
 		this.averageCost = averageCost;
 		this.minCost = minCost;
 		this.maxCost = maxCost;
+	}
+	
+	public void refresh()
+	{
+		
 	}
 	
 	public Long getId() {
