@@ -33,7 +33,7 @@ public class ListingSummary
 	private Date createdAt;
 	private Date updatedAt;
 	
-	@OneToMany(mappedBy="summary", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="summary", fetch = FetchType.EAGER)
 	private List<SummaryHistoryLog> historyLogs;
 	
 	//Watchlist - Table of many ListingSummaries to many users

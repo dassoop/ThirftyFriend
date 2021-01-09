@@ -44,26 +44,26 @@
 							<td>${summary.maxCost}</td>
 						</tr>
 						
-						<tr>
+						<%-- <tr>
 							<th>Updated At</th>
 							<td><fmt:formatDate value="${summary.updatedAt}" type="both"/></td>
-						</tr>
+						</tr> --%>
 					</tbody>
 				</table>
 				
-				<div class="historyLogDisplay">
-					<table class="table table-light"> 
+				<div class="historyLogDisplay" style="display:none">
+					<table class="table table-light" > 
 						<thead>
 							<th>Date</th>
 							<th>Amount</th>
 						</thead>
 					
 						<tbody>
-							<c:forEach items="${historyLogs}" var="log">
+							<c:forEach items="${summary.historyLogs}" var="log">
 								<tr>
 									<td class = 'columnDate'><fmt:formatDate value="${log.createdAt}" type="both"/></td>
 									<td class = 'columnPrice'>${log.averageCost}</td>
-								</tr>
+								</tr>   
 							</c:forEach>
 						</tbody>
 					</table>

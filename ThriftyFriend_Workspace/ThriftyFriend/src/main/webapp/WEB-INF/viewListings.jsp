@@ -41,7 +41,9 @@
 						<th>View on Ebay</th>
 						<th>Product Name</th>
 						<th>Product Price</th>
-						<th>Category Name</th>
+						<th></th>
+						<%-- <th>Category Name</th>
+						<th>Category ID</th> --%>
 					</thhead>
 					
 					<tbody>
@@ -50,13 +52,21 @@
 								<td><a href="${listing.linkUrl}">View</a>
 								<td>${listing.name}</td>
 								<td>${listing.price}</td>
-								<td>
+								<td><img src="${listing.imgUrl}" class="itemImg"></td>
+								<%-- <td>
 									<ul>
 										<c:forEach items="${listing.categoryNameList}" var="catId"> 
 											<li>${catId}</li>
 										</c:forEach>
 									</ul>
 								</td>
+								<td>
+									<ul>
+										<c:forEach items="${listing.categoryIdList}" var="catId"> 
+											<li>${catId}</li>
+										</c:forEach>
+									</ul>
+								</td> --%>
 							</tr>
 						</c:forEach>
 					</tbody>
