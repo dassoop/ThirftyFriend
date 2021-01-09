@@ -164,7 +164,6 @@ public class MainController
 		
 		ListingSummary sum = this.sumService.findById(id);
 		List<SummaryHistoryLog> historyLogs = this.logService.findAllBySummary(sum);
-		this.searchService.summaryUpdateAndRefresh(sum, (String)session.getAttribute("token"));
 		
 		m.addAttribute("historyLogs", historyLogs);
 		m.addAttribute("summary", sum);

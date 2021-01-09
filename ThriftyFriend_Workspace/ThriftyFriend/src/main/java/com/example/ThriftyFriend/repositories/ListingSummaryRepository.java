@@ -12,5 +12,6 @@ import com.example.ThriftyFriend.models.ListingSummary;
 public interface ListingSummaryRepository extends CrudRepository<ListingSummary, Long>
 {
 	List<ListingSummary> findByNameContaining(String productName);
+	List<ListingSummary> findAll();
 	boolean existsByName(String name);
 }

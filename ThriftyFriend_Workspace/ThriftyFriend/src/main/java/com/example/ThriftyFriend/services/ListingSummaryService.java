@@ -24,6 +24,11 @@ public class ListingSummaryService
 		return this.sumRepo.findById(id).orElse(null);
 	}
 	
+	public List<ListingSummary> findAll()
+	{
+		return this.sumRepo.findAll();
+	}
+	
 	public List<ListingSummary> searchForSummary(String productName)
 	{
 		return this.sumRepo.findByNameContaining(productName);
@@ -50,6 +55,5 @@ public class ListingSummaryService
 		
 		return this.sumRepo.save(sum);
 	}
-	
 
 }
