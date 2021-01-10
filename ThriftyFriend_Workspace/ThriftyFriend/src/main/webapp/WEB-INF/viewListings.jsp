@@ -96,7 +96,33 @@
 			</div>
 		</div>
 	</div>
+		<p>Refine your search: <p>
 	
+	<div class="row">
+	<table> 
+						<thhead>
+							<th>Suggested categories for your search</th>
+						</thhead>
+						
+						<tbody>
+							<c:forEach items="${categories}" var="category">
+								<tr>
+									<td>
+										<form action="/searchRequest/name" method="GET">
+
+												<label for="search"></label>
+												<input type="hidden" name="search" id="search" value="${searchedText}"/>
+												<label for="catId"></label>
+												<input type="hidden" name="catId" id="catId" value="${category.key}"/>
+												<input type="submit" value="${category.value}"/>
+												<a></a>	
+										</form>
+									</td> <!-- link will go to get mapping in controller -->
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+	</div>
 	<p>Listings in ThriftyFriend Database</p>
 	
 	<div class="row databaseListings">

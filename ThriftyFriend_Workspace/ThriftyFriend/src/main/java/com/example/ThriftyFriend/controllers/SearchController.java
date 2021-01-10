@@ -1,5 +1,6 @@
 package com.example.ThriftyFriend.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -37,7 +38,7 @@ public class SearchController
 	//Otherwise refresh mappings are done with the path variable when viewing summaries for up to date information.
 	//Can only use one or the other, never both PathVariable and RequestParam. 
 	@GetMapping("/searchRequest/{name}")
-	public String refreshSearch(@PathVariable("name")String name, @RequestParam(value = "search", required=false)String searchText, Model m, HttpSession session)
+	public String refreshSearch(@PathVariable("name")String name, @RequestParam(value = "search", required=false)String searchText, @RequestParam(value = "catId", required=false)String catId, Model m, HttpSession session)
 	{	
 		if(searchText != null)
 		{
@@ -53,13 +54,20 @@ public class SearchController
 		}
 		
 		//Get response data from Ebay API call in service	
-		JSONObject response = this.searchService.requestSearch(name, (String)session.getAttribute("token"));
+		JSONObject response = this.searchService.requestSearchCategories(name, (String)session.getAttribute("token"), catId);
 		List<ListingItem> listingItems = this.searchService.parseSearchJSON(response, (String)session.getAttribute("token"));	
 		List<Double> mathResults = this.searchService.minMaxAvgAlgo(listingItems);
 //		catService.suggestedCategory((String)session.getAttribute("token"), name);
 		
 		//Search the Thrifty DataBase for a summary that already matches the name 
 		List<ListingSummary> listingSummaries = this.sumService.searchForSummary(name);
+
+		//get suggestions for categories based off of search
+		JSONObject catResponse = this.searchService.categorySuggestion(name, (String)session.getAttribute("token"));
+
+		//Parse response to hashmap with Category Id's and their names
+		HashMap<String, String> catMap = this.searchService.parseCategories(catResponse);
+
 		
 		//Check if there is a User logged in to display their name
 		if(session.getAttribute("user_id") != null)
@@ -73,6 +81,8 @@ public class SearchController
 		m.addAttribute("searchedText", name);
 		m.addAttribute("listingItems", listingItems);
 		m.addAttribute("listingSummaries", listingSummaries);
+		m.addAttribute("categories", catMap);
+
 		return "viewListings.jsp";
 	}
 }
