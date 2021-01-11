@@ -2,6 +2,7 @@ package com.example.ThriftyFriend.services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -60,7 +61,74 @@ public class APISearchService
         }
         return responseJSON;
     }
+
+        // adding category id string
+    public JSONObject requestSearchCategories(String searchText, String token, String catId)
+    {    	
+    	//Convert spaces in string to underscores for search query
+    	List<String> searchTextSeperated = Arrays.asList(searchText.split(" "));
+    	String combinedString = "";
+        for(int i = 0; i < searchTextSeperated.size(); i++)
+        {
+        	combinedString = combinedString + "_" + searchTextSeperated.get(i);
+        }
+        //Start search request
+        HttpResponse<JsonNode> response = null;
+        JSONObject responseJSON = null;
+        try 
+        {
+        	response = Unirest.get("https://api.ebay.com/buy/browse/v1/item_summary/search?q=" + combinedString + "&category_ids=" + catId)// &limit=10 added cat id to search
+                    .header("Authorization", "Bearer " + token)
+                    .asJson();   
+            responseJSON = response.getBody().getObject();
+        } 
+        catch (UnirestException e) 
+        {
+            e.printStackTrace();
+        } 
+        catch(NullPointerException n)
+        {
+
+        }
+        return responseJSON;
+    }
     
+    
+        //Method which calls the Ebay Taxonomy API's getSuggestedCategories method to get categories to refine a search with 
+    public JSONObject categorySuggestion(String searchText, String token)
+    {    	
+    	//Convert spaces in string to underscores for search query
+    	List<String> searchTextSeperated = Arrays.asList(searchText.split(" "));
+    	String combinedString = "";
+        for(int i = 0; i < searchTextSeperated.size(); i++)
+        {
+        	combinedString = combinedString + "_" + searchTextSeperated.get(i);
+        }
+        //Start search request
+        HttpResponse<JsonNode> response = null;
+        JSONObject responseJSON = null;
+        try 
+        {
+        	response = Unirest.get("https://api.ebay.com/commerce/taxonomy/v1/category_tree/0/get_category_suggestions?q=" + combinedString )
+                    .header("Authorization", "Bearer " + token)
+                    .header("Accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .header("Accept-Encoding", "gzip")
+                    .asJson();        
+            responseJSON = response.getBody().getObject();
+         
+        } 
+        catch (UnirestException e) 
+        {
+            e.printStackTrace();
+        } 
+        catch(NullPointerException n)
+        {
+
+        }
+        return responseJSON;
+    }
+
     //Parse through the JSON Object returned from the Ebay API and assign it to temporary ListingItem Objects
     public List<ListingItem> parseSearchJSON(JSONObject response, String token)
     {
@@ -111,6 +179,19 @@ public class APISearchService
 			searchResults.add(listingItem);
 		}
     	return searchResults;
+    }
+        //parse getSuggestedCategories response
+    public HashMap<String,String> parseCategories(JSONObject response){
+		JSONArray jArray = response.getJSONArray("categorySuggestions");
+		List<String> categories = new ArrayList<String>();
+		HashMap<String, String> catMap = new HashMap<String,String>();
+    	for (int i = 0; i < jArray.length(); i++ ) {
+    		JSONObject obj = jArray.getJSONObject(i);
+    		String category= obj.getJSONObject("category").getString("categoryId");//delete once hashmap works
+    		categories.add(category);
+    		catMap.put(obj.getJSONObject("category").getString("categoryId"), obj.getJSONObject("category").getString("categoryName"));
+    	}
+    	return catMap;
     }
     
     //Use ListingItem Objects price value to find the min, max, and average price of the listings returned.
