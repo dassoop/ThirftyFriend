@@ -115,4 +115,12 @@ public class ListingSummary
 	public void setHistoryLogs(List<SummaryHistoryLog> historyLogs) {
 		this.historyLogs = historyLogs;
 	}
+	public List<User> getUser_watchlist() {
+		return user_watchlist;
+	}
+	public void setUser_watchlist(List<User> user_watchlist) {
+		this.user_watchlist = user_watchlist;
+	}
+	
+	
 }

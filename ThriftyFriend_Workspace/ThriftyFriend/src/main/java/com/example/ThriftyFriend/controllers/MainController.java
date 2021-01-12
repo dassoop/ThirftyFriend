@@ -90,9 +90,17 @@ public class MainController
 			return "redirect:/loginReg";
 		}
 		m.addAttribute("user", this.uService.findById((Long)session.getAttribute("user_id")));
+		//get user from session
+		Long userID = (Long)session.getAttribute("user_id");
+		User user = this.uService.findById(userID);
+		//get the list of watched items
+		List<ListingSummary> listings = user.getListings();
+		//display the listings
+		m.addAttribute("watched_items", listings);
+		
+		
 		return "dashboard.jsp";
 	}
-
 //LOGIN USER POST - Mapping to post login User form 
 	@PostMapping("/login")
 	public String login(@RequestParam("email")String email, @RequestParam("password")String password, HttpSession session, RedirectAttributes redirect)
@@ -169,4 +177,29 @@ public class MainController
 		m.addAttribute("summary", sum);
 		return "viewSummary.jsp";
 	}
+	
+	//Adding a summary to a user watch list
+		@GetMapping("/summary/add/{id}")
+		public String addListing(@PathVariable("id")Long id, Model m, HttpSession session) {
+			//get user from session
+			Long userID = (Long)session.getAttribute("user_id");
+			//get the summary id
+			Long summaryId = id;
+			User user = this.uService.findById(userID);
+			ListingSummary selectedListing = this.sumService.findById(summaryId);
+			this.uService.addSummaryToWatchList(user, selectedListing);
+			return "redirect:/dashboard";
+			
+		}
+		@GetMapping("/summary/remove/{id}")
+		public String removeListing(@PathVariable("id")Long id, Model m, HttpSession session) {
+			//get user from session
+			Long userID = (Long)session.getAttribute("user_id");
+			//get the summary id
+			Long summaryId = id;
+			User user = this.uService.findById(userID);
+			ListingSummary selectedListing = this.sumService.findById(summaryId);
+			this.uService.removeSummaryFromWatchList(user, selectedListing);
+			return "redirect:/dashboard";
+		}
 }
