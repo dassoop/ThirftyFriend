@@ -34,7 +34,7 @@
 	
 	<div class="shadow-lg p-6 mb-5 bg-white rounded">
 		<div class="row ebayListings">
-			<div class="col-7 listingsTable">
+			<div class="col-9 listingsTable">
 				<table class="table table-light bg-white"> 
 
 					<thhead>
@@ -51,7 +51,7 @@
 							<tr>
 								<td><a href="${listing.linkUrl}">View</a>
 								<td>${listing.name}</td>
-								<td>${listing.price}</td>
+								<td><fmt:formatNumber value = "${listing.price}" type="currency"/></td>
 								<td><img src="${listing.imgUrl}" class="itemImg"></td>
 								<%-- <td>
 									<ul>
@@ -73,23 +73,23 @@
 				</table>
 			</div>
 			
-			<div class="col-5 bg-white">
+			<div class="col-3 bg-white">
 
 				<table class="table table-light"> 
 					<tbody>
 						<tr>
 							<th>Average Cost</th>
-							<td>${averageCost}</td>
+							<td><fmt:formatNumber value = "${averageCost}" type="currency"/></td>
 						</tr>
 						
 						<tr>
 							<th>Minimum Cost</th>
-							<td>${minCost}</td>
+							<td><fmt:formatNumber value = "${minCost}" type="currency"/></td>
 						</tr>
 						
 						<tr>
 							<th>Maximum Cost</th>
-							<td>${maxCost}</td>
+							<td><fmt:formatNumber value = "${maxCost}" type="currency"/></td>
 						</tr>
 					</tbody>
 				</table>
@@ -123,11 +123,12 @@
 						</tbody>
 					</table>
 	</div>
-	<p>Listings in ThriftyFriend Database</p>
+	
 	
 	<div class="row databaseListings">
 		<div class="col">
 			<div class="shadow-lg p-6 mb-5 bg-transparent rounded">	
+			<p>Listings in ThriftyFriend Database</p>
 				<table class="table table-light"> 
 						<thhead>
 							<th>Summary Name</th>
