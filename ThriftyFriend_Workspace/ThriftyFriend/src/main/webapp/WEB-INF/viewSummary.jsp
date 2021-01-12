@@ -31,17 +31,17 @@
 					<tbody>
 						<tr>
 							<th>Average Cost</th>
-							<td>${summary.averageCost}</td>
+							<td><fmt:formatNumber value = "${summary.averageCost}" type="currency"/></td>
 						</tr>
 						
 						<tr>
 							<th>Minimum Cost</th>
-							<td>${summary.minCost}</td>
+							<td><fmt:formatNumber value = "${summary.minCost}" type="currency"/></td>
 						</tr>
 						
 						<tr>
 							<th>Maximum Cost</th>
-							<td>${summary.maxCost}</td>
+							<td><fmt:formatNumber value = "${summary.maxCost}" type="currency"/></td>
 						</tr>
 						
 						<%-- <tr>
