@@ -23,15 +23,21 @@
 <div class="container">
 	<div class="row">
 	
-		<div id="watchlist-dashboard" class="col shadow-lg rounded bg-white">
+		<div class="col shadow-lg rounded">
 			<h5>Watchlist</h5>
 				<table class="table table-light"> 
 					<thead>
 						<th>Product Name</th>
+						<th>Action</th>
 					</thead>
 				
 					<tbody>
-						<td></td>
+					<c:forEach items="${user.listings}" var="item">
+					<tr>
+						<td>${item.name}</td>
+						<td><a href="/summary/${item.id}/view" class="btn btn-primary mintButton">View</a> | <a href="/summary/remove/${item.id}" class="btn btn-primary mintButton">Remove From Watch List</a></td>
+					</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 		

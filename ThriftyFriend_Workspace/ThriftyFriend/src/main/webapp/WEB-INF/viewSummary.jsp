@@ -50,7 +50,14 @@
 						</tr> --%>
 					</tbody>
 				</table>
-				
+				<c:choose>
+					<c:when test="${summary.user_watchlist.contains(user)}">
+						<a href="/summary/remove/${summary.id}" class="btn btn-primary mintButton">Remove From Watch List</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/summary/add/${summary.id}" class="btn btn-primary mintButton">Add To Watch List</a>
+					</c:otherwise>
+				</c:choose>
 				<div class="historyLogDisplay" style="display:none">
 					<table class="table table-light" > 
 						<thead>
@@ -68,6 +75,8 @@
 						</tbody>
 					</table>
 				</div>
+				
+				
 		
 		</div>
 		

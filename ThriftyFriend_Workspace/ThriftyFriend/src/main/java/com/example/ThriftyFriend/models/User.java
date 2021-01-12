@@ -42,7 +42,7 @@ public class User
 	@JoinTable(name="watchlist",
 			joinColumns = @JoinColumn(name="user_id"),
 			inverseJoinColumns = @JoinColumn(name="summary_id"))
-	private List<ListingSummary> list_watchlist;
+	private List<ListingSummary> listings;
 	
 	@PrePersist
 	protected void createdAt()
@@ -102,4 +102,11 @@ public class User
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	public List<ListingSummary> getListings() {
+		return listings;
+	}
+	public void setListings(List<ListingSummary> listings) {
+		this.listings = listings;
+	}
+	
 }
