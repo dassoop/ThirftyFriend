@@ -94,6 +94,6 @@
 	<canvas id="chart"></canvas>
 </div>
 </t:wrapper>
-<script src="/Javascript/graph.js"></script>
+<script src="/javascript/graph.js"></script>
 </body>
 </html>
