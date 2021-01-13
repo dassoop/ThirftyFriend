@@ -178,28 +178,28 @@ public class MainController
 		return "viewSummary.jsp";
 	}
 	
-	//Adding a summary to a user watch list
-		@GetMapping("/summary/add/{id}")
-		public String addListing(@PathVariable("id")Long id, Model m, HttpSession session) {
-			//get user from session
-			Long userID = (Long)session.getAttribute("user_id");
-			//get the summary id
-			Long summaryId = id;
-			User user = this.uService.findById(userID);
-			ListingSummary selectedListing = this.sumService.findById(summaryId);
-			this.uService.addSummaryToWatchList(user, selectedListing);
-			return "redirect:/dashboard";
-			
-		}
-		@GetMapping("/summary/remove/{id}")
-		public String removeListing(@PathVariable("id")Long id, Model m, HttpSession session) {
-			//get user from session
-			Long userID = (Long)session.getAttribute("user_id");
-			//get the summary id
-			Long summaryId = id;
-			User user = this.uService.findById(userID);
-			ListingSummary selectedListing = this.sumService.findById(summaryId);
-			this.uService.removeSummaryFromWatchList(user, selectedListing);
-			return "redirect:/dashboard";
-		}
+//Adding a summary to a user watch list
+	@GetMapping("/summary/add/{id}")
+	public String addListing(@PathVariable("id")Long id, Model m, HttpSession session) {
+		//get user from session
+		Long userID = (Long)session.getAttribute("user_id");
+		//get the summary id
+		Long summaryId = id;
+		User user = this.uService.findById(userID);
+		ListingSummary selectedListing = this.sumService.findById(summaryId);
+		this.uService.addSummaryToWatchList(user, selectedListing);
+		return "redirect:/dashboard";
+	}
+	
+	@GetMapping("/summary/remove/{id}")
+	public String removeListing(@PathVariable("id")Long id, Model m, HttpSession session) {
+		//get user from session
+		Long userID = (Long)session.getAttribute("user_id");
+		//get the summary id
+		Long summaryId = id;
+		User user = this.uService.findById(userID);
+		ListingSummary selectedListing = this.sumService.findById(summaryId);
+		this.uService.removeSummaryFromWatchList(user, selectedListing);
+		return "redirect:/dashboard";
+	}
 }
