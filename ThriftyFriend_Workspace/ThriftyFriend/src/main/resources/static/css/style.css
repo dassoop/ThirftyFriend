@@ -197,8 +197,16 @@ body{
 	align-content: center;
 }
 
-
-
+#summarytop{
+	border-radius: 1.25rem !important;
+	width: 100%;
+	align-items: center;
+	margin: 30px 10px 30px 677px;
+}
+#summarycontent{
+	padding: 25px;
+	border-radius: 1.25rem !important;
+}
 
 
 
