@@ -18,6 +18,13 @@ var priceArr = [];
 
 //create chart using chart.js		
 var chart = document.getElementById('chart').getContext('2d');
+
+//Set default x-axis to 0
+Chart.scaleService.updateScaleDefaults('linear', {
+ticks: {
+    min: 0
+}
+});
 var priceChart = new Chart(chart,
 {
 	type: 'line',
@@ -30,5 +37,6 @@ var priceChart = new Chart(chart,
             data: priceArr
         }]
     },
+
 	
 });
