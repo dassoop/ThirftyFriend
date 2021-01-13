@@ -29,8 +29,9 @@
 #mintbutton1{
 	display: inline-block;
 }
-body{
-      background-image: url(/img/Logo_1_transparent_rotate.png);
+body
+{
+      background-image: url(/img/logo_1_transparent_rotate.png);
       position: sticky;
       background-size: 150px;
       background-repeat: round repeat;
