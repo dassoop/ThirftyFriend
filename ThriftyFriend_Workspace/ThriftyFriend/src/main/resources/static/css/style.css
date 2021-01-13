@@ -56,6 +56,9 @@
 	border-radius: 1.2rem;
 	width: 100%;
 }
+#searchbutton:hover{
+	color: lightgrey !important;
+}
 body{
       background-image: url(/img/Logo_1_transparent_rotate.png);
       position: sticky;
@@ -102,8 +105,17 @@ body{
 }
 #main-navbar{
 	text-align: center;
-	
 	padding-left: 9.25%;
+}
+.nav-item{
+	background-color: #5ddac2 !important;
+	margin: 0px 2.5px 0px 2.5px;
+	border-radius: .5rem;
+	color: white !important;
+}
+.nav-link{
+	color: white;
+	font-weight: 350;
 }
 #user-status{
 	text-align: right;
@@ -162,3 +174,33 @@ body{
 #summaryname{
 	border-radius: 1.25rem !important;
 }
+
+#logincontainer{
+	margin-top: 25px;
+}
+#registrationform{
+	border-radius: 1.25rem !important;
+}
+#loginform{
+	border-radius: 1.25rem !important;
+}
+#biggerwatchlist{
+	max-width: 45%;
+}
+#watchlistcontainer{
+	border-radius: 1.25rem !important;
+	padding: 25px;
+	width: 40%;
+}
+#watchlistcontainer h3{
+	padding: 10px;
+	align-content: center;
+}
+
+
+
+
+
+
+
+

@@ -22,11 +22,11 @@
 <t:wrapper>
 <%-- Date: <fmt:formatDate value="${event.date}" pattern="EEEE, MMM-dd-yyyy"/> --%>
 
-<div class="container">
+<div class="container" id="logincontainer">
 	<div class="row">
 		<div class="col">
-			<div class="box">
-				<div class="shadow-lg p-4 mb-5 bg-white rounded">
+			<div class="box1">
+				<div class="shadow-lg p-4 mb-5 bg-white rounded" id="registrationform">
 					<div class="form">
 							<h1>Register User</h1>
 						
@@ -58,7 +58,7 @@
 								<form:password path="passwordConfirmation" class="form-control"/>
 							</div>
 							
-								<button class="btn btn-primary mintButton">Register User</button>
+								<button id="mintbutton1" class="btn btn-primary mintButton">Register User</button>
 							</form:form>
 					</div>
 				</div> 
@@ -66,8 +66,8 @@
 		</div>
 		
 		<div class="col">
-		<div class="box">
-			<div class="shadow-lg p-4 mb-5 bg-white rounded">
+		<div class="box1">
+			<div class="shadow-lg p-4 mb-5 bg-white rounded" id="loginform">
 				<h1>Login</h1>
 				
 				<form action="/login" method="POST">
@@ -80,7 +80,7 @@
 						<input type="password" id="password" name="password" class="form-control"></textarea> 
 					</div>
 					
-					<button class="btn btn-primary mintButton">Login</button>
+					<button id="mintbutton1" class="btn btn-primary mintButton">Login</button>
 				</form> 
 				
 			</div>
