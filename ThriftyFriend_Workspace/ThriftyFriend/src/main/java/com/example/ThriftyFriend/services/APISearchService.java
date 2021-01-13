@@ -152,7 +152,12 @@ public class APISearchService
 			}
 			String title = obj.getString("title");
 			double price = Double.parseDouble(obj.getJSONObject("price").getString("value"));
-			String imageURL = obj.getJSONObject("image").getString("imageUrl");
+			// If item deoesn't have image, display blank.
+			
+			String imageURL ="";
+			if (obj.has("image")) {
+			imageURL = obj.getJSONObject("image").getString("imageUrl");
+			};
 			String itemWebUrl = obj.getString("itemWebUrl");
 			
 			//Loop through the category objects of the newly created listing item and add them as a list
