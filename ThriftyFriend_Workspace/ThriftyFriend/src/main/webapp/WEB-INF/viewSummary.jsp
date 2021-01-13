@@ -21,11 +21,11 @@
 <body>
 <t:wrapper>
 
-<div class="container">
+<div class="container" id="summarytop">
 
 	<div class="row">
 	
-		<div class="col shadow-lg rounded">
+		<div class="col shadow-lg rounded bg-white" id="summarycontent">
 			<h5>${summary.name}</h5>
 				<table class="table table-light"> 
 					<tbody>
@@ -52,10 +52,10 @@
 				</table>
 				<c:choose>
 					<c:when test="${summary.user_watchlist.contains(user)}">
-						<a href="/summary/remove/${summary.id}" class="btn btn-primary mintButton">Remove From Watch List</a>
+						<a href="/summary/remove/${summary.id}" id="mintbutton1" class="btn btn-primary mintButton">Remove From Watch List</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/summary/add/${summary.id}" class="btn btn-primary mintButton">Add To Watch List</a>
+						<a href="/summary/add/${summary.id}" id="mintbutton1" class="btn btn-primary mintButton">Add To Watch List</a>
 					</c:otherwise>
 				</c:choose>
 				<div class="historyLogDisplay" style="display:none">
@@ -89,7 +89,7 @@
 	</div> 
 
 </div>
-<div class = "container">
+<div class = "container" id="summarygraph">
 	<canvas id="chart"></canvas>
 </div>
 </t:wrapper>

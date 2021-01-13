@@ -20,11 +20,11 @@
 <body>
 <t:wrapper>
 
-<div class="container">
+<div class="container" id="biggerwatchlist">
 	<div class="row">
 	
-		<div class="col shadow-lg rounded">
-			<h5>Watchlist</h5>
+		<div class="col shadow-lg rounded bg-white" id="watchlistcontainer">
+			<h3>Watchlist</h3>
 				<table class="table table-light"> 
 					<thead>
 						<th>Product Name</th>
@@ -35,7 +35,7 @@
 					<c:forEach items="${user.listings}" var="item">
 					<tr>
 						<td>${item.name}</td>
-						<td><a href="/summary/${item.id}/view" class="btn btn-primary mintButton">View</a> | <a href="/summary/remove/${item.id}" class="btn btn-primary mintButton">Remove From Watch List</a></td>
+						<td><a href="/summary/${item.id}/view" id="mintbutton1" class="btn btn-primary mintButton">View</a> | <a href="/summary/remove/${item.id}" id="mintbutton1" class="btn btn-primary mintButton">Remove From Watch List</a></td>
 					</tr>
 					</c:forEach>
 					</tbody>
@@ -43,13 +43,13 @@
 		
 		
 		</div>
-		
+<!-- 		
 		<div class="col">
 		
 		
 		
 		</div>
-		
+		 -->
 	</div> 
 </div>
 

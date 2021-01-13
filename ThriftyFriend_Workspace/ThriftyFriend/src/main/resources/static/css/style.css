@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 
 .redText
@@ -13,12 +14,11 @@
 #search
 {
 	margin-top: 25%;
-	margin-bottom: 0px; 
-	width: 80%; 
+	margin-bottom: 6px; 
+	width: 100%; 
 	display:inline-block;
-}
-#searchbutton{
-	margin-bottom: 5px;
+	padding: 22px;
+	border-radius: 1.2rem
 }
 .searchtitle{
 	padding: 5px;
@@ -26,8 +26,38 @@
 #watchlist-dashboard{
 	padding: 2em;
 }
+/* #5ddac2 (mint color code) */
 #mintbutton1{
 	display: inline-block;
+		line-height: 1.7;
+	border: 0px solid;
+	font-weight: 450;
+	border-radius: 1.2rem;
+}
+#mintbutton2{
+	line-height: 0.85;
+	border: 0px solid;
+	font-weight: 450;
+	border-radius: 1.25rem;
+	margin: 3px 0px 4px -3px;
+}
+#mintbutton3{
+	line-height: 1.5;
+	border: 0px solid;
+	font-weight: 450;
+	border-radius: 1.25rem;
+	margin: 3px 0px 2px -3px;
+}
+#searchbutton{
+		display: inline-block;
+		line-height: 1.25;
+	border: 0px solid;
+	font-weight: 500;
+	border-radius: 1.2rem;
+	width: 100%;
+}
+#searchbutton:hover{
+	color: lightgrey !important;
 }
 body{
       background-image: url(/img/Logo_1_transparent_rotate.png);
@@ -54,7 +84,7 @@ body{
 }
 .listingsTable
 {
-	height: 300px;
+	height: 350px;
 	overflow: auto;
 }
 .historyLogDisplay
@@ -66,3 +96,120 @@ body{
 {
 	height:70px;
 }
+
+
+/*this is for the main header tag */
+#navcol{
+	padding: 13px;
+	align-items: center !important;
+}
+#main-navbar{
+	text-align: center;
+	padding-left: 9.25%;
+}
+.nav-item{
+	background-color: #5ddac2 !important;
+	margin: 0px 2.5px 0px 2.5px;
+	border-radius: .5rem;
+	color: white !important;
+}
+.nav-link{
+	color: white;
+	font-weight: 350;
+}
+#user-status{
+	text-align: right;
+	padding: 5px;
+	padding-right: 25px;
+}
+
+/* viewlistings page */
+#ebaylistings{
+	    border-radius: 1.25rem!important;
+	    height: 75%;
+}
+.thlistings{
+	position: sticky;
+	top: 0;
+	background-color: white;
+}
+#trlistings{
+	background-color: white;
+}
+#averageprices{
+	max-width: 24%;
+	margin-top: 3%;
+	height: 25%;
+	align-items: center !important;
+}
+
+#averagepricestable{
+	margin-top: 9px;
+	border-collapse:separate; 
+	border-spacing:14px;
+	
+}
+#tableheadlistings{
+ background: white;
+}
+	.trprices{
+		margin: 10px !important;
+		padding-bottom: 10px;	
+	}
+	.thlistings{
+	vertical-align: middle !important;
+	width: 75%;
+	margin-top: 5px;
+	border-top: 0px solid #ffffff !important;
+	}
+
+#categoriesforsearch{
+	border-radius: 1.25rem !important;
+	padding: 15px !important;
+}
+#categorytablehead{
+	margin: 10px !important;
+	padding: 10px;
+}
+#summaryname{
+	border-radius: 1.25rem !important;
+}
+
+#logincontainer{
+	margin-top: 25px;
+}
+#registrationform{
+	border-radius: 1.25rem !important;
+}
+#loginform{
+	border-radius: 1.25rem !important;
+}
+#biggerwatchlist{
+	max-width: 45%;
+}
+#watchlistcontainer{
+	border-radius: 1.25rem !important;
+	padding: 25px;
+	width: 40%;
+	margin: 50px 0px 0px 0px;
+}
+#watchlistcontainer h3{
+	padding: 10px;
+	align-content: center;
+}
+
+#summarytop{
+	border-radius: 1.25rem !important;
+	width: 100%;
+	align-items: center;
+	margin: 30px 10px 30px 677px;
+}
+#summarycontent{
+	padding: 25px;
+	border-radius: 1.25rem !important;
+}
+
+
+
+
+

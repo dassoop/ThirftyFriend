@@ -26,33 +26,36 @@
 
 	<div class="shadow-lg p-3 mb-5 bg-white rounded">
 		<div class="searchtitle">
-			<h3>You searched for: ${searchedText}</h3>	
+			<h3>Showing results for: ${searchedText}</h3>	
 		</div>
 	</div>
 
 	<p>Listings from Ebay</p>
 	
 	<div class="shadow-lg p-6 mb-5 bg-white rounded">
-		<div class="row ebayListings">
+		<div class="row ebayListings bg-white rounded" id="ebaylistings">
 			<div class="col-9 listingsTable">
-				<table class="table table-light bg-white"> 
-
-					<thhead>
-						<th>View on Ebay</th>
-						<th>Product Name</th>
-						<th>Product Price</th>
-						<th></th>
-						<%-- <th>Category Name</th>
-						<th>Category ID</th> --%>
-					</thhead>
+				<table class="table table-light bg-white rounded" > 
+				
+					<thead class="bg-white" id="tableheadlistings">
+						<tr id="trlistings">
+							<%-- <th>View on Ebay</th> --%>
+							<th class="thlistings">Product Name</th>
+							<th class="thlistings">Product Price</th>
+							<th class="thlistings"></th>
+							
+							<%-- <th>Category Name</th>
+							<th>Category ID</th> --%>
+						</tr>
+					</thead>
 					
 					<tbody>
 						<c:forEach items="${listingItems}" var="listing">
 							<tr>
-								<td><a href="${listing.linkUrl}">View</a>
-								<td>${listing.name}</td>
+								
+								<td>${listing.name} <p><a href="${listing.linkUrl}" id="mintbutton2" class="btn btn-primary mintButton">View</a></p></td>
 								<td><fmt:formatNumber value = "${listing.price}" type="currency"/></td>
-								<td><img src="${listing.imgUrl}" class="itemImg"></td>
+								<td><a href="${listing.linkUrl}"><img src="${listing.imgUrl}" class="itemImg"></a></td>
 								<%-- <td>
 									<ul>
 										<c:forEach items="${listing.categoryNameList}" var="catId"> 
@@ -73,21 +76,21 @@
 				</table>
 			</div>
 			
-			<div class="col-3 bg-white">
+			<div class="col-3 bg-white" id="averageprices">
 
-				<table class="table table-light"> 
+				<table class="table table-light bg-transparent" id="averagepricestable"> 
 					<tbody>
-						<tr>
+						<tr class="trprices">
 							<th>Average Cost</th>
 							<td><fmt:formatNumber value = "${averageCost}" type="currency"/></td>
 						</tr>
 						
-						<tr>
+						<tr class="trprices">
 							<th>Minimum Cost</th>
 							<td><fmt:formatNumber value = "${minCost}" type="currency"/></td>
 						</tr>
 						
-						<tr>
+						<tr class="trprices">
 							<th>Maximum Cost</th>
 							<td><fmt:formatNumber value = "${maxCost}" type="currency"/></td>
 						</tr>
@@ -98,11 +101,13 @@
 	</div>
 		<p>Refine your search: <p>
 	
-	<div class="row">
+	<div class="row shadow-lg p-6 mb-5 bg-white rounded" id="categoriesforsearch">
 	<table> 
-						<thhead>
-							<th>Suggested categories for your search</th>
-						</thhead>
+						<thead>
+							<tr>
+								<th id="categorytablehead">Suggested categories for your search</th>
+							</tr>
+						</thead>
 						
 						<tbody>
 							<c:forEach items="${categories}" var="category">
@@ -114,7 +119,7 @@
 												<input type="hidden" name="search" id="search" value="${searchedText}"/>
 												<label for="catId"></label>
 												<input type="hidden" name="catId" id="catId" value="${category.key}"/>
-												<input type="submit" value="${category.value}"/>
+												<input type="submit" value="${category.value}" id="mintbutton3" class="btn btn-primary mintButton"/>
 												<a></a>	
 										</form>
 									</td> <!-- link will go to get mapping in controller -->
@@ -124,12 +129,12 @@
 					</table>
 	</div>
 	
-	
-	<div class="row databaseListings">
-		<div class="col">
-			<div class="shadow-lg p-6 mb-5 bg-transparent rounded">	
-			<p>Listings in ThriftyFriend Database</p>
-				<table class="table table-light"> 
+	<p>Listings in ThriftyFriend Database</p>
+	<div class="row databaseListings bg-transparent" id="summaryname">
+		<div class="col bg-transparent" >
+			<div class="shadow-lg p-6 mb-5 bg-white rounded" id="summariesonsearch">	
+			
+				<table class="table table-light rounded"> 
 						<thhead>
 							<th>Summary Name</th>
 						</thhead>
