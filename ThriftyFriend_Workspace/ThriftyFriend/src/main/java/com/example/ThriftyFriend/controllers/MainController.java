@@ -180,8 +180,13 @@ public class MainController
 	
 //Adding a summary to a user watch list
 	@GetMapping("/summary/add/{id}")
-	public String addListing(@PathVariable("id")Long id, Model m, HttpSession session) {
-		//get user from session
+	public String addListing(@PathVariable("id")Long id, Model m, HttpSession session, RedirectAttributes redirect) 
+	{
+		if(session.getAttribute("user_id")==null)
+		{
+			redirect.addFlashAttribute("watchlistError", "You must be logged in to do that.");
+			return "redirect:/summary/{id}/view";
+		}
 		Long userID = (Long)session.getAttribute("user_id");
 		//get the summary id
 		Long summaryId = id;
@@ -192,7 +197,8 @@ public class MainController
 	}
 	
 	@GetMapping("/summary/remove/{id}")
-	public String removeListing(@PathVariable("id")Long id, Model m, HttpSession session) {
+	public String removeListing(@PathVariable("id")Long id, Model m, HttpSession session) 
+	{
 		//get user from session
 		Long userID = (Long)session.getAttribute("user_id");
 		//get the summary id

@@ -58,6 +58,7 @@
 						<a href="/summary/add/${summary.id}" id="mintbutton1" class="btn btn-primary mintButton">Add To Watch List</a>
 					</c:otherwise>
 				</c:choose>
+				<span class="redText">${watchlistError}</span>
 				<div class="historyLogDisplay" style="display:none">
 					<table class="table table-light" > 
 						<thead>
