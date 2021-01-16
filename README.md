@@ -8,6 +8,10 @@ Thrifty Friend is a tool to gather average prices and other information sellers/
 * MySQL server database storage
 
 ---
+# Libraries
+* Chart.js - https://www.chartjs.org/
+
+---
 # Contributors
 
 * Kelly H
