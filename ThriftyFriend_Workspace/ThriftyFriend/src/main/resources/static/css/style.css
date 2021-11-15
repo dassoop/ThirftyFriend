@@ -61,7 +61,7 @@
 }
 body
 {
-      background-image: url(/img/logo_1_transparent_rotate.png);
+      background-color: white;
       position: sticky;
       background-size: 150px;
       background-repeat: round repeat;

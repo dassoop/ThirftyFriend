@@ -11,46 +11,29 @@
 				rel="stylesheet" 
 				integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
 				crossorigin="anonymous">
-			<link rel="stylesheet" href="/css/style.css">
+			<link rel="stylesheet" href="/static/css/style.css">
 			<link rel="preconnect" href="https://fonts.gstatic.com">
 			<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 			
-<title>ThriftyFriend - Search Listings</title>
+<title>ThriftyFriend - Home Page</title>
 </head>
 <body>
 <t:wrapper>
 
-<div class="container" id="biggerwatchlist">
+
+<div class="container">
+
 	<div class="row">
-	
-		<div class="col shadow-lg rounded bg-white" id="watchlistcontainer">
-			<h3>Watchlist</h3>
-				<table class="table table-light"> 
-					<thead>
-						<th>Product Name</th>
-						<th>Action</th>
-					</thead>
-				
-					<tbody>
-					<c:forEach items="${user.listings}" var="item">
-					<tr>
-						<td>${item.name}</td>
-						<td><a href="/summary/${item.id}/view" id="mintbutton1" class="btn btn-primary mintButton">View</a> | <a href="/summary/remove/${item.id}" id="mintbutton1" class="btn btn-primary mintButton">Remove From Watch List</a></td>
-					</tr>
-					</c:forEach>
-					</tbody>
-				</table>
-		
-		
+		<div class="col-md-8 offset-md-2" align="center">
+				<form action="/searchRequest/name" method="GET">
+					<div class="form-group">
+						<label for="search"></label>
+						<input id="search" name="search" class="form-control" placeholder="Search for your product...">	
+						<button id="searchbutton" class="btn btn-primary mintButton">Search</button>
+					</div>
+				</form> 			
 		</div>
-<!-- 		
-		<div class="col">
-		
-		
-		
-		</div>
-		 -->
-	</div> 
+	</div>
 </div>
 
 </t:wrapper>

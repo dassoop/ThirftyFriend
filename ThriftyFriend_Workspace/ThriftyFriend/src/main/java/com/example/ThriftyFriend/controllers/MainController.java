@@ -52,7 +52,7 @@ public class MainController
 			m.addAttribute("user", this.uService.findById((Long)session.getAttribute("user_id")));
 		}
 		session.setAttribute("token", this.authService.getAuthToken());
-		return "homepage.jsp";
+		return "index.jsp";
 	}
 	
 //VIEW LOGIN/REG - View login and registration page
@@ -73,7 +73,7 @@ public class MainController
 		uValid.validate(u, result);
 		if(result.hasErrors())
 		{
-			return "loginReg.jsp";
+			return "original/loginReg.jsp";
 		}
 		this.uService.registerUser(u);
 		session.setAttribute("user_id", u.getId());
@@ -99,7 +99,7 @@ public class MainController
 		m.addAttribute("watched_items", listings);
 		
 		
-		return "dashboard.jsp";
+		return "original/dashboard.jsp";
 	}
 //LOGIN USER POST - Mapping to post login User form 
 	@PostMapping("/login")
@@ -117,7 +117,7 @@ public class MainController
 			redirect.addFlashAttribute("loginBlankError", "Your login info cannot be blank.");
 			return "redirect:/loginReg";
 		}
-		//Check if the user email is registered in databbase
+		//Check if the user email is registered in database
 		if(!this.uService.existsByEmail(email))
 		{
 			redirect.addFlashAttribute("userNotFoundError", "That user does not exist.");
@@ -175,7 +175,7 @@ public class MainController
 		
 		m.addAttribute("historyLogs", historyLogs);
 		m.addAttribute("summary", sum);
-		return "viewSummary.jsp";
+		return "original/viewSummary.jsp";
 	}
 	
 //Adding a summary to a user watch list
