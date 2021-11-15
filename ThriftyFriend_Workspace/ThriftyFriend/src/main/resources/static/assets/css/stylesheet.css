@@ -1,0 +1,56 @@
+.btn-primary {
+  background-color: #5ddac1;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #459f8d;
+  border: none;
+}
+
+.masthead {
+}
+
+.overlay {
+  background-color: #56c6c6;
+}
+
+.masthead {
+  background: #56c6c6 url('/assets/img/ThriftyFriendBackground.png')no-repeat center center;
+  background-size: cover;
+}
+
+.call-to-action {
+  background: #56c6c6 url("/assets/img/ThriftyFriendBackground.png") no-repeat center center;
+  background-size: cover;
+}
+
+.register-photo .image-holder {
+  display: table-cell;
+  width: auto;
+  background: url(/assets/img/meeting.jpg);
+  background-size: cover;
+}
+
+.card {
+  width: 50%;
+}
+
+@media (max-width: 700px) {
+  .card {
+    width: 100%;
+  }
+}
+
+.section-heading {
+  margin-top: 50px;
+}
+
+.screen-panel {
+  height: 60vh;
+}
+
+.action-button:hover {
+  background-color: #459f8d;
+}
+
