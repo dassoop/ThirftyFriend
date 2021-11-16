@@ -56,4 +56,10 @@ public class ListingSummaryService
 		return this.sumRepo.save(sum);
 	}
 
+	public ListingSummary findByName(String name)
+	{
+		ListingSummary sum = this.sumRepo.findByName(name);
+		return sum;
+	}
+
 }

@@ -150,12 +150,13 @@ public class MainController
 		if(this.sumService.existsByName(name))
 		{
 			redirect.addFlashAttribute("summaryExistsError", "There is already a listing summary by that name. Please use the search bar to find it.");
-			return "redirect:/searchRequest/{name}";
+			return "redirect:/searchRequest/{name}#summaryTable";
 		}
 		else
 		{
 			this.sumService.createListingSummary(name, avg, min, max);
-			return "redirect:/searchRequest/{name}";
+			String id = this.sumService.findByName(name).getId().toString();
+			return "redirect:/summary/" + id + "/view";
 		}
 	}
 	

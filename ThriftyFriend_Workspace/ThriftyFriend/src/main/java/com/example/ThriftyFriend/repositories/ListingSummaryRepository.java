@@ -14,4 +14,5 @@ public interface ListingSummaryRepository extends CrudRepository<ListingSummary,
 	List<ListingSummary> findByNameContaining(String productName);
 	List<ListingSummary> findAll();
 	boolean existsByName(String name);
+	ListingSummary findByName(String name);
 }

@@ -137,7 +137,7 @@
     <div class="row">
         <div class="col">
             <div class="table-responsive">
-                <table class="table">
+                <table id="summaryTable" class="table">
                     <thhead>
                         <th>Summary Name</th>
                     </thhead>
