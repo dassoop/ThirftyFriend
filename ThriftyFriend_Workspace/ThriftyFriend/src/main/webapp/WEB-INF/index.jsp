@@ -32,7 +32,7 @@
         </div>
     </div>
 </nav>
-<header class="text-center text-white masthead">
+<header class="text-center text-white masthead" style="margin-top: 25px;">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">

@@ -37,8 +37,8 @@
         </div>
     </div>
 </nav>
-<div class="screen-panel" style="margin-top: 0px;">
-    <div class="card card-center" style="margin: 0 auto;margin-top: 50px;">
+<div class="screen-panel">
+    <div class="card card-center" style="margin: 50px auto 0;height: 60vh; overflow-y: auto;">
         <div class="card-body" style="padding: 40px;box-shadow: 0px 0px 16px rgba(33,37,41,0.28);">
             <h4 class="card-title">${user.name}'s Watchlist</h4>
             <div class="table-responsive">
@@ -53,7 +53,7 @@
                     <c:forEach items="${user.listings}" var="item">
                         <tr>
                             <td>${item.name}</td>
-                            <td><a href="/summary/${item.id}/view" class="btn btn-primary">View</a> | <a href="/summary/remove/${item.id}" class="btn btn-primary">Remove From Watch List</a></td>
+                            <td><a href="/summary/${item.id}/view" class="btn btn-primary">View</a> | <a href="/summary/remove/${item.id}" class="btn btn-primary">Remove</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -62,17 +62,19 @@
         </div>
     </div>
 </div>
-<footer class="footer-basic">
-    <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
-    <ul class="list-inline">
-        <li class="list-inline-item"><a href="/">Home</a></li>
-        <li class="list-inline-item"><a href="#">Services</a></li>
-        <li class="list-inline-item"><a href="#">About</a></li>
-        <li class="list-inline-item"><a href="#">Terms</a></li>
-        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-    </ul>
-    <p class="copyright">Thrifty Friend &#169 2021</p>
-</footer>
+<div>
+    <footer class="footer-basic">
+        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="/">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Thrifty Friend &#169 2021</p>
+    </footer>
+</div>
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 

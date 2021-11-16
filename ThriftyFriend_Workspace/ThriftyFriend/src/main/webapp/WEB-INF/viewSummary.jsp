@@ -72,6 +72,7 @@
                                 </tbody>
                             </table>
                         </div>
+                            <p class="errorText">${watchlistError}</p>
                             <c:choose>
                                 <c:when test="${summary.user_watchlist.contains(user)}">
                                     <a href="/summary/remove/${summary.id}" class="btn btn-primary">Remove From Watch List</a>
