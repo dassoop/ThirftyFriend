@@ -148,7 +148,10 @@ public class APISearchService
 	
 			if(obj.has("marketingPrice"))
 			{
-				marketPrice = obj.getJSONObject("marketingPrice").getJSONObject("originalPrice").getString("value");
+				if(obj.has("originalPrice"))
+				{
+					marketPrice = obj.getJSONObject("marketingPrice").getJSONObject("originalPrice").getString("value");
+				}
 			}
 			String title = obj.getString("title");
 			double price = Double.parseDouble(obj.getJSONObject("price").getString("value"));
