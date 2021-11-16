@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Thrifty Friend</title>
+    <title>Thrifty Friend</title>
     <meta name="description" content="Thrifty Friend is a tool to search for and catalog average prices of items on ebay.">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
@@ -43,7 +43,7 @@
                 <form action="/searchRequest/name" method="GET">
                     <div class="row">
                         <div class="col-12 col-md-9 mb-2 mb-md-0">
-                            <input class="form-control form-control-lg" name="search" type="text" placeholder="Product name... (example: iphone 11 64gb)"></div>
+                            <input class="form-control form-control-lg" name="search" type="text" placeholder="Product name..."></div>
                         <div class="col-12 col-md-3">
                             <button class="btn btn-primary btn-lg" type="submit">Search</button></div>
                     </div>
@@ -100,7 +100,7 @@
 <footer class="footer-basic">
     <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
     <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Home</a></li>
+        <li class="list-inline-item"><a href="/">Home</a></li>
         <li class="list-inline-item"><a href="#">Services</a></li>
         <li class="list-inline-item"><a href="#">About</a></li>
         <li class="list-inline-item"><a href="#">Terms</a></li>

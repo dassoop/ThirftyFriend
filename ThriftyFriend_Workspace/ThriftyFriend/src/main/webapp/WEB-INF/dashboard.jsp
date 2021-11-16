@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>ThriftyFriend</title>
+    <title>Thrifty Friend | Dashboard</title>
     <meta name="description" content="Thrifty Friend is a tool to search for and catalog average prices of items on ebay.">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
@@ -40,7 +40,7 @@
 <div class="screen-panel" style="margin-top: 0px;">
     <div class="card card-center" style="margin: 0 auto;margin-top: 50px;">
         <div class="card-body" style="padding: 40px;box-shadow: 0px 0px 16px rgba(33,37,41,0.28);">
-            <h4 class="card-title">Watchlist</h4>
+            <h4 class="card-title">${user.name}'s Watchlist</h4>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -65,7 +65,7 @@
 <footer class="footer-basic">
     <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
     <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Home</a></li>
+        <li class="list-inline-item"><a href="/">Home</a></li>
         <li class="list-inline-item"><a href="#">Services</a></li>
         <li class="list-inline-item"><a href="#">About</a></li>
         <li class="list-inline-item"><a href="#">Terms</a></li>

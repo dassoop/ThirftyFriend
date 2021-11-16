@@ -108,8 +108,8 @@ public class MainController
 		//Check if user is already logged in 
 		if(session.getAttribute("user_id")!=null)
 		{
-			redirect.addFlashAttribute("alreadyLoggedError", "You are already logged in as " + this.uService.findById((Long)session.getAttribute("user_id")).getName());
-			return "redirect:/loginReg";
+//			redirect.addFlashAttribute("alreadyLoggedError", "You are already logged in as " + this.uService.findById((Long)session.getAttribute("user_id")).getName());
+			return "redirect:/dashboard";
 		}
 		//Check if either login form fields are blank
 		if(email == "" | password == "")
@@ -127,7 +127,7 @@ public class MainController
 		User u = this.uService.findByEmail(email);
 		if(!BCrypt.checkpw(password, u.getPassword()))
 		{
-			redirect.addFlashAttribute("loginError", "Login information not correct.");
+			redirect.addFlashAttribute("loginError", "Login information incorrect.");
 			return "redirect:/loginReg";
 		}
 		session.setAttribute("user_id", u.getId());
