@@ -24,7 +24,11 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link active" href="/">Search</a></li>
                 <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
-            </ul><span class="navbar-text actions"> <a class="btn btn-light action-button" role="button" href="/loginReg" style="background: rgb(93,218,193);">Login | Register</a></span>
+            </ul>
+            <span class="navbar-text actions">
+                <a class="btn btn-light action-button" role="button" href="/loginReg" style="background: rgb(93,218,193); display: inline;">Login | Register</a>
+                <a class="nav-link" href="/logout" style="display: inline;">Log Out</a>
+            </span>
         </div>
     </div>
 </nav>
@@ -102,7 +106,7 @@
         <li class="list-inline-item"><a href="#">Terms</a></li>
         <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
     </ul>
-    <p class="copyright">Company Name © 2021</p>
+    <p class="copyright">Thrifty Friend &#169 2021</p>
 </footer>
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

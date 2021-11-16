@@ -27,8 +27,8 @@
     <div class="container"><a class="navbar-brand" href="/"><img src="/assets/img/Logo_1.png"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link active" href="/">Search</a></li>
-                <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/">Search</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/dashboard">Dashboard</a></li>
             </ul>
             <span class="navbar-text actions">
                 <a class="btn btn-light action-button" role="button" href="/loginReg" style="background: rgb(93,218,193);">Login | Register</a>
@@ -37,49 +37,31 @@
         </div>
     </div>
 </nav>
-<section class="login-clean">
-    <form action="/login" method="post">
-        <h2 style="font-size: 24px;text-align: center;">Login</h2>
-        <div class="illustration"><i class="icon ion-person" style="color: rgb(93,218,193);border-color: rgb(93,218,193);"></i></div>
-        <div class="mb-3">
-            <input class="form-control" type="email" name="email" placeholder="Email">
+<div class="screen-panel" style="margin-top: 0px;">
+    <div class="card card-center" style="margin: 0 auto;margin-top: 50px;">
+        <div class="card-body" style="padding: 40px;box-shadow: 0px 0px 16px rgba(33,37,41,0.28);">
+            <h4 class="card-title">Watchlist</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${user.listings}" var="item">
+                        <tr>
+                            <td>${item.name}</td>
+                            <td><a href="/summary/${item.id}/view" class="btn btn-primary">View</a> | <a href="/summary/remove/${item.id}" class="btn btn-primary">Remove From Watch List</a></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="mb-3">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <div class="mb-3">
-            <button class="btn btn-primary d-block w-100" type="submit" style="background: rgb(93,218,193);">Log In</button>
-        </div>
-        <a class="forgot" href="#">Forgot your email or password?</a>
-    </form>
-
-</section>
-<section class="register-photo">
-    <div class="form-container">
-        <div class="image-holder"></div>
-        <form:form action="/register" method="POST" modelAttribute="user">
-            <h2 class="text-center"><strong>Create</strong> an account.</h2>
-            <div class="mb-3">
-                <form:input path="name" class="form-control" type="text" placeholder="Username"/>
-            </div>
-            <div class="mb-3">
-                <form:input path="email" class="form-control" type="email" name="email" placeholder="Email"/>
-            </div>
-            <div class="mb-3">
-                <form:input path="password" class="form-control" type="password" name="password" placeholder="Password" value=" "/>
-            </div>
-            <div class="mb-3">
-                <form:input path="passwordConfirmation" class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)"/>
-            </div>
-            <div class="mb-3">
-                <div class="form-check">
-                    <label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to the license terms.</label>
-                </div>
-            </div>
-            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="background: rgb(93,218,193);">Sign Up</button></div><a class="already" href="#">You already have an account? Login here.</a>
-        </form:form>
     </div>
-</section>
+</div>
 <footer class="footer-basic">
     <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
     <ul class="list-inline">

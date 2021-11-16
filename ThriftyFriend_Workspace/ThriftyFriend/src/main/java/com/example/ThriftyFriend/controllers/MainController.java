@@ -73,7 +73,7 @@ public class MainController
 		uValid.validate(u, result);
 		if(result.hasErrors())
 		{
-			return "original/loginReg.jsp";
+			return "loginReg.jsp";
 		}
 		this.uService.registerUser(u);
 		session.setAttribute("user_id", u.getId());
@@ -99,7 +99,7 @@ public class MainController
 		m.addAttribute("watched_items", listings);
 		
 		
-		return "original/dashboard.jsp";
+		return "dashboard.jsp";
 	}
 //LOGIN USER POST - Mapping to post login User form 
 	@PostMapping("/login")
@@ -175,7 +175,7 @@ public class MainController
 		
 		m.addAttribute("historyLogs", historyLogs);
 		m.addAttribute("summary", sum);
-		return "original/viewSummary.jsp";
+		return "viewSummary.jsp";
 	}
 	
 //Adding a summary to a user watch list

@@ -83,6 +83,6 @@ public class SearchController
 		m.addAttribute("listingSummaries", listingSummaries);
 		m.addAttribute("categories", catMap);
 
-		return "original/viewListings.jsp";
+		return "viewListings.jsp";
 	}
 }
